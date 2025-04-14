@@ -1,0 +1,40 @@
+@layer reset, theme, layout, symbols;
+
+@import url(./reset.css);
+@import url(./theme.css);
+@import url(./layout.css);
+@import url(./symbols.css);
+
+body {
+    height: 100%;
+}
+
+button {
+    border: 1px solid transparent;
+}
+
+input,
+textarea {
+    border: 1px solid var(--divider);
+}
+
+button,
+input,
+textarea {
+    border-radius: var(--rad);
+}
+
+button:has(span.symbol) {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    padding: var(--pad);
+    line-height: 1;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    accent-color: var(--green);
+}

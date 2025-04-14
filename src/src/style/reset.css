@@ -1,0 +1,75 @@
+/*
+    restructuring defaults
+*/
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+    }
+
+    html {
+        hanging-punctuation: first last;
+    }
+
+    body {
+        min-height: 100svh;
+        line-height: 1.5;
+    }
+
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        overflow-wrap: break-word;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-wrap: balance;
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+
+    p,
+    li,
+    figcaption {
+        max-width: 75ch;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        :has(:target) {
+            scroll-behavior: smooth;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+/*
+    calculations and proportions
+*/
+@layer layout {
+    :root {
+        --size-xs: 0.75rem;
+        --size-sm: 0.875rem;
+        --size-md: 1rem;
+        --size-lg: 1.125rem;
+        --size-xl: 1.3125rem;
+        --size-2xl: 1.5rem;
+        --size-3xl: 2.652rem;
+        --size-4xl: 4rem;
+        --pad-sm: 4px;
+        --pad: 8px;
+        --pad-lg: 12px;
+        --rad: 4px;
+    }
+}

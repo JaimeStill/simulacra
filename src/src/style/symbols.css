@@ -1,0 +1,25 @@
+/*
+    material symbols outlined:
+    https://developers.google.com/fonts/docs/material_symbols#self-hosting_the_font
+*/
+@layer symbols {
+    @font-face {
+        font-family: 'Material Symbols Outlined';
+        font-style: normal;
+        src: url(/material-symbols-outlined.woff2) format('woff2');
+    }
+
+    .symbol {
+        font-family: 'Material Symbols Outlined';
+        font-weight: normal;
+        font-style: normal;
+        /* Preferred icon size */
+        font-size: 24px;
+        display: inline-block;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+    }
+}
