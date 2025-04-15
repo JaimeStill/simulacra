@@ -21,6 +21,7 @@ jobs:
           cd src
           npm install
           npm run github
+          cd ..
       - name: Commit to Repo
         run: |
           git config --global user.name 'actions'
