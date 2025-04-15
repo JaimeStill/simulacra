@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/simulation-grid/simulation-grid.component.css"],
+  "sourcesContent": [":host {\n    overflow: auto;\n}\n\ndiv.grid {\n    padding: var(--pad);\n    gap: var(--pad);\n}"],
+  "mappings": ";AAAA;AACI,YAAU;AACd;AAEA,GAAG,CAAC;AACA,WAAS,IAAI;AACb,OAAK,IAAI;AACb;",
+  "names": []
+}

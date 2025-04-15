@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/pattern-link/pattern-link.component.css"],
+  "sourcesContent": ["div.card {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: var(--pad);\n    gap: var(--pad);\n    background-color: var(--bg-2);\n    border-radius: var(--pad);\n}\n\nbutton:has(span.symbol) {\n    transform: scale(90%);\n    border-radius: 50%;\n    color: var(--green);\n}"],
+  "mappings": ";AAAA,GAAG,CAAC;AACA,WAAS;AACT,eAAa;AACb,mBAAiB;AACjB,WAAS,IAAI;AACb,OAAK,IAAI;AACT,oBAAkB,IAAI;AACtB,iBAAe,IAAI;AACvB;AAEA,MAAM,KAAK,IAAI,CAAC;AACZ,aAAW,MAAM;AACjB,iBAAe;AACf,SAAO,IAAI;AACf;",
+  "names": []
+}
