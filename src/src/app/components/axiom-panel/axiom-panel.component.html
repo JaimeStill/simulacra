@@ -1,0 +1,29 @@
+@if (axiom(); as axiom) {
+    <div class="grid">
+        <div class="header" [class.expanded]="expanded()">
+            @if (axiom.pattern.reference) {
+                <a [href]="axiom.pattern.reference" target="_blank">
+                    <h3>{{ axiom.pattern.name }}</h3>
+                </a>
+            } @else {
+                <h3>{{ axiom.pattern.name }}</h3>
+            }
+            <button (click)="toggle()">
+                <span class="symbol">
+                    @if (expanded()) {
+                        keyboard_arrow_down
+                    } @else {
+                        keyboard_arrow_right
+                    }
+                </span>
+            </button>
+        </div>
+        @if (expanded()) {
+            <div class="contents">
+                @for (sim of axiom.pattern.simulations; track sim.url) {
+                    <pattern-link [pattern]="sim" (select)="load($event)"></pattern-link>
+                }
+            </div>
+        }
+    </div>
+}

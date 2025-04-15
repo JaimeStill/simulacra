@@ -1,7 +1,7 @@
 import { ElementRef, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { Axioms, ParamState, SimulationPattern } from '../models';
+import { Axiom, Axioms, ParamState, SimulationPattern } from '../models';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,7 @@ import { Axioms, ParamState, SimulationPattern } from '../models';
 export class AppService {
     private router = inject(Router);
 
-    axioms = Axioms;
+    axioms = signal<Axiom[]>(Axioms);
     body = signal<ElementRef<HTMLBodyElement> | null>(null);
     pattern = signal<SimulationPattern | undefined>(undefined);
 
@@ -36,12 +36,10 @@ export class AppService {
                 else
                     this.pattern.set(undefined);
             });
-
-            this.load({ axiom: 'randomness', simulation: 'traditional-random-walker'});
     }
 
     private find(state: ParamState): SimulationPattern | undefined {
-        return this.axioms
+        return this.axioms()
             .find((a) => a.pattern.url === state.axiom)
             ?.pattern
             .find(state.simulation);

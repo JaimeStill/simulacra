@@ -42,24 +42,19 @@ class Walker {
         this.y = height / 2;
     }
 
-    bound(val: number, factor: number, limit?: number) {
-        let result: number;
+    bound(val: number, factor: number, limit: number, inc: boolean) {
+        const target = inc
+            ? val + factor
+            : val - factor;
 
-        if (limit) {
-            const target = val + factor;
-
-            result = target > limit
+        if (inc)
+            return target > limit
                 ? limit
                 : target;
-        } else {
-            const target = val - factor;
-
-            result = target < 0
-                ? 0
+        else
+            return target < limit
+                ? limit
                 : target;
-        }
-
-        return result;
     }
 
     show(s: p5) {
@@ -73,16 +68,16 @@ class Walker {
 
         switch (choice) {
             case 0:
-                this.x = this.bound(this.x, this.stroke, this.width);
+                this.x = this.bound(this.x, this.stroke, this.width - this.stroke, true);
                 break;
             case 1:
-                this.x = this.bound(this.x, this.stroke);
+                this.x = this.bound(this.x, this.stroke, this.stroke, false);
                 break;
             case 2:
-                this.y = this.bound(this.y, this.stroke, this.height);
+                this.y = this.bound(this.y, this.stroke, this.height - this.stroke, true);
                 break;
             default:
-                this.y = this.bound(this.y, this.stroke);
+                this.y = this.bound(this.y, this.stroke, this.stroke, false);
                 break;
         }
     }

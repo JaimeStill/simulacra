@@ -1,4 +1,10 @@
 <main class="grid">
     <app-panel (navigate)="navigate()"></app-panel>
-    <div #renderer class="renderer"></div>
+    @if (app.pattern(); as pattern) {
+        <simulation [pattern]="pattern"></simulation>
+    } @else {
+        @if (app.axioms(); as axioms) {
+            <simulation-grid [axioms]="axioms"></simulation-grid>
+        }
+    }
 </main>

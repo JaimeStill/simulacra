@@ -1,0 +1,14 @@
+@if (pattern(); as pattern) {
+    <div class="card">
+        @if (pattern.reference) {
+            <a [href]="pattern.reference" target="_blank">
+                {{ pattern.name }}
+            </a>
+        } @else {
+            <p>{{ pattern.name }}</p>
+        }
+        <button (click)="select.emit(pattern)">
+            <span class="symbol">play_circle</span>
+        </button>
+    </div>
+}

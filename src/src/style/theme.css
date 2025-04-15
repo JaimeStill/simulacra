@@ -109,4 +109,10 @@
         color: var(--green);
         font-size: .9rem;
     }
+
+    hr {
+        border: none;
+        height: 1px;
+        background-color: var(--divider);
+    }
 }

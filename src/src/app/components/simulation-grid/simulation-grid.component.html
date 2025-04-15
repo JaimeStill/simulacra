@@ -1,0 +1,7 @@
+@if (axioms(); as axioms) {
+    <div class="grid">
+        @for (axiom of axioms; track axiom.pattern.url) {
+            <axiom-panel [axiom]="axiom"></axiom-panel>
+        }
+    </div>
+}

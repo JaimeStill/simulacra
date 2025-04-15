@@ -1,1 +1,13 @@
-<div #renderer class="renderer"></div>
+<div #renderer class="renderer">
+    @if (pattern(); as pattern) {
+        <div class="overlay">
+            @if (pattern.reference) {
+                <a [href]="pattern.reference" target="_blank">
+                    <h3>{{ pattern.name }}</h3>
+                </a>
+            } @else {
+                <h3>{{ pattern.name }}</h3>
+            }
+        </div>
+    }
+</div>

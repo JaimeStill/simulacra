@@ -1,0 +1,8 @@
+:host {
+    overflow: auto;
+}
+
+div.grid {
+    padding: var(--pad);
+    gap: var(--pad);
+}

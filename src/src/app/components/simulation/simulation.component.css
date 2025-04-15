@@ -1,0 +1,19 @@
+div.renderer {
+    height: 100%;
+    position: relative;
+}
+
+div.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--pad);
+    background: transparent;
+}
+
+div.overlay a h3,
+div.overlay :not(a) h3 {
+    backdrop-filter: blur(var(--pad));
+    border-radius: var(--rad);
+}

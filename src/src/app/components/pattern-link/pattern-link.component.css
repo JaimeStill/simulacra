@@ -1,0 +1,15 @@
+div.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--pad);
+    gap: var(--pad);
+    background-color: var(--bg-2);
+    border-radius: var(--pad);
+}
+
+button:has(span.symbol) {
+    transform: scale(90%);
+    border-radius: 50%;
+    color: var(--green);
+}

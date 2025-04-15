@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
-import { ParamState, Randomness } from '../models';
-import { AppPanelComponent } from '../components';
+import { Component, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
+import { ParamState, Randomness, SimulationPattern } from '../models';
+import { AppPanelComponent, SimulationComponent, SimulationGridComponent } from '../components';
 import { AppService } from '../services';
 
 @Component({
@@ -8,19 +8,17 @@ import { AppService } from '../services';
     templateUrl: 'home.route.html',
     styleUrl: 'home.route.css',
     imports: [
-        AppPanelComponent
+        AppPanelComponent,
+        SimulationComponent,
+        SimulationGridComponent
     ]
 })
-export class HomeRoute implements OnInit {
+export class HomeRoute {
     app = inject(AppService);
     renderer = viewChild.required<ElementRef<HTMLDivElement>>('renderer');
-
-    ngOnInit() {
-        const randomness = new Randomness();
-        randomness.pattern.simulations[0].build(this.renderer().nativeElement).start();
-    }
+    pattern = signal<SimulationPattern>(new Randomness().pattern.simulations[0]);
 
     navigate(state?: ParamState | undefined) {
-        this.app.load(state);                
+        this.app.load(state);
     }
 }
