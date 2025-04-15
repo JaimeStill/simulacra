@@ -1,29 +1,29 @@
 name: Deploy Pages
 on:
-    push:
-        branches: [ main ]
-        paths:
-            - 'src'
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [22.x]
-        steps:
-        - uses: actions/checkout@v2
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v2
-          with:
-            node-version: ${{ matrix.node-version }}
-        - name: Build Simulacra
-          run: |
-            npm install
-            npm run deploy
-        - name: Commit to Repo
-          run: |
-            git config --global user.name 'actions'
-            git config --global user.email 'actions@users.noreply.github.com'
-            git add .
-            git commit -am "Update GitHub Pages"
-            git push
+  deploy-to-pages:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build Simulacra
+        run: |
+          npm install
+          npm run github
+      - name: Commit to Repo
+        run: |
+          git config --global user.name 'actions'
+          git config --global user.email 'actions@users.noreply.github.com'
+          git add .
+          git commit -am "Update GitHub Pages"
+          git push

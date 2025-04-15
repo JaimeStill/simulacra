@@ -40,6 +40,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "p5"
+            ],
             "outputPath": "dist/simulacra",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -59,6 +62,25 @@
             "scripts": []
           },
           "configurations": {
+            "github": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "5MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "outputPath": {
+                "base": "../docs",
+                "browser": ""
+              }
+            },
             "production": {
               "budgets": [
                 {

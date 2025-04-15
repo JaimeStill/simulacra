@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/simulation/simulation.component.css"],
-  "sourcesContent": ["div.renderer {\n    height: 100%;\n    position: relative;\n}\n\ndiv.overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    padding: var(--pad);\n    background: transparent;\n}\n\ndiv.overlay a h3,\ndiv.overlay :not(a) h3 {\n    backdrop-filter: blur(var(--pad));\n    border-radius: var(--rad);\n}"],
-  "mappings": ";AAAA,GAAG,CAAC;AACA,UAAQ;AACR,YAAU;AACd;AAEA,GAAG,CAAC;AACA,YAAU;AACV,OAAK;AACL,QAAM;AACN,SAAO;AACP,WAAS,IAAI;AACb,cAAY;AAChB;AAEA,GAAG,CATC,QASQ,EAAE;AACd,GAAG,CAVC,QAUQ,KAAK,GAAG;AAChB,2BAAiB,KAAK,IAAI;AAA1B,mBAAiB,KAAK,IAAI;AAC1B,iBAAe,IAAI;AACvB;",
-  "names": []
-}

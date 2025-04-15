@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/routes/home.route.css"],
-  "sourcesContent": ["main.grid {\n    display: grid;\n    grid-template-rows: auto minmax(0, 1fr);\n    height: 100dvh;\n    overflow: hidden;\n}\n\ndiv.panel {\n    padding: var(--pad);\n    background-color: var(--bg-2);\n}"],
-  "mappings": ";AAAA,IAAI,CAAC;AACD,WAAS;AACT,sBAAoB,KAAK,OAAO,CAAC,EAAE;AACnC,UAAQ;AACR,YAAU;AACd;AAEA,GAAG,CAAC;AACA,WAAS,IAAI;AACb,oBAAkB,IAAI;AAC1B;",
-  "names": []
-}

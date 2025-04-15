@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/app-panel/app-panel.component.css"],
-  "sourcesContent": ["div.panel {\n    display: flex;\n    padding: var(--pad);\n    gap: var(--pad);\n    align-items: center;\n    justify-content: space-between;\n    background-color: var(--bg-2);\n}\n\nh2.header {\n    cursor: pointer;\n}\n\nh2.header:hover {\n    color: var(--red-1);\n}\n\na.logo img {\n    width: 1.8rem;\n}"],
-  "mappings": ";AAAA,GAAG,CAAC;AACA,WAAS;AACT,WAAS,IAAI;AACb,OAAK,IAAI;AACT,eAAa;AACb,mBAAiB;AACjB,oBAAkB,IAAI;AAC1B;AAEA,EAAE,CAAC;AACC,UAAQ;AACZ;AAEA,EAAE,CAJC,MAIM;AACL,SAAO,IAAI;AACf;AAEA,CAAC,CAAC,KAAK;AACH,SAAO;AACX;",
-  "names": []
-}
