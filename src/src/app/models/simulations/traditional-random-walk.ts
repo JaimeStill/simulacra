@@ -1,6 +1,32 @@
 import p5 from 'p5';
-import { Simulation } from '../simulation';
+import { Simulation } from '../simulations';
 import { Theme } from '../theme';
+
+export class TraditionalRandomWalk extends Simulation {
+    constructor(element: HTMLElement) {
+        super(
+            element
+        );
+    }
+
+    protected sketch(s: p5): void {
+        const walker = new Walker(
+            this.width,
+            this.height,
+            this.theme
+        );
+
+        s.setup = () => {
+            s.createCanvas(this.width, this.height);
+            s.background(this.theme.bg());
+        };
+
+        s.draw = () => {
+            walker.step(s);
+            walker.show(s);
+        };
+    }
+}
 
 class Walker {
     public x: number;
@@ -59,34 +85,5 @@ class Walker {
                 this.y = this.bound(this.y, this.stroke);
                 break;
         }
-    }
-}
-
-export class TraditionalRandomWalk extends Simulation {
-    constructor(element: HTMLElement) {
-        super(
-            'Traditional Random Walker',
-            'traditional-random-walker',
-            0,
-            element
-        );
-    }
-
-    protected sketch(s: p5): void {
-        const walker = new Walker(
-            this.width,
-            this.height,
-            this.theme
-        );
-
-        s.setup = () => {
-            s.createCanvas(this.width, this.height);
-            s.background(this.theme.bg());
-        };
-
-        s.draw = () => {
-            walker.step(s);
-            walker.show(s);
-        };
     }
 }

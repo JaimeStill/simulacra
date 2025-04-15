@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, viewChild } from '@angular/core';
-import { Randomness } from '../axioms';
+import { Randomness } from '../models';
 
 @Component({
     selector: 'home-route',
@@ -10,10 +10,7 @@ export class HomeRoute implements OnInit {
     renderer = viewChild.required<ElementRef<HTMLDivElement>>('renderer');
 
     ngOnInit() {
-        const randomness = new Randomness(
-            this.renderer().nativeElement
-        );
-
-        randomness.simulations[0].start();
+        const randomness = new Randomness();
+        randomness.pattern.simulations[0].build(this.renderer().nativeElement).start();
     }
 }

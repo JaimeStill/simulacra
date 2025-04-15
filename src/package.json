@@ -26,7 +26,6 @@
     "@angular/cli": "^19.2.7",
     "@angular/compiler-cli": "^19.2.0",
     "@types/p5": "^1.7.6",
-    "prettier": "^3.5.3",
     "typescript": "~5.7.2"
   }
 }

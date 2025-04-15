@@ -1,11 +1,11 @@
 import p5 from 'p5';
-import { Theme } from './theme';
+import { Theme } from '../theme';
 
 export abstract class Simulation {
     protected resizer: ResizeObserver;
     protected processor?: p5;
-    protected height: number;
-    protected width: number;
+    protected height: number = 0;
+    protected width: number = 0;
 
     protected theme: Theme = new Theme(
         this.start.bind(this)
@@ -14,9 +14,6 @@ export abstract class Simulation {
     protected abstract sketch(s: p5): void;
 
     constructor(
-        public name: string,
-        public url: string,
-        public index: number,
         protected element: HTMLElement
     ) {
         this.width = element.clientWidth;
