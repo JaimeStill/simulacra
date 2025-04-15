@@ -6,7 +6,7 @@
     @font-face {
         font-family: 'Material Symbols Outlined';
         font-style: normal;
-        src: url(/material-symbols-outlined.woff2) format('woff2');
+        src: url('../../public/material-symbols-outlined.woff2') format('woff2');
     }
 
     .symbol {
