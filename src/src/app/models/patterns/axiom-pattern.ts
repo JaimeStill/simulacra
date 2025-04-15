@@ -11,4 +11,8 @@ export class AxiomPattern extends Pattern {
     ) {
         super(name, url, index, reference);
     }
+
+    find(url: string) {
+        return this.simulations.find((s) => s.url === url)
+    }
 }

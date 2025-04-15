@@ -5,7 +5,7 @@
 @layer theme {
     :root {
         color-scheme: dark light;
-        --system-ui: system-ui, "Segoe UI", Robot, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        --font: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -99,7 +99,7 @@
     }
 
     body {
-        font-family: var(--system-ui);
+        font-family: var(--font);
         background-color: var(--bg);
         color: var(--color);
     }

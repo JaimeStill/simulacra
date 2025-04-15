@@ -1,0 +1,20 @@
+div.panel {
+    display: flex;
+    padding: var(--pad);
+    gap: var(--pad);
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-2);
+}
+
+h2.header {
+    cursor: pointer;
+}
+
+h2.header:hover {
+    color: var(--red-1);
+}
+
+a.logo img {
+    width: 2rem;
+}

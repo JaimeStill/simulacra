@@ -6,6 +6,7 @@ export const RandomnessPatterns: SimulationPattern[] = [
         'Traditional Random Walker',
         'traditional-random-walker',
         0,
-        (element: HTMLElement) => new TraditionalRandomWalk(element)
+        (element: HTMLElement) => new TraditionalRandomWalk(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/src/app/models/simulations/traditional-random-walk.ts'
     )
 ]

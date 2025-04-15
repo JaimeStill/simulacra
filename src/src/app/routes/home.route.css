@@ -1,3 +1,14 @@
-div.renderer {
+main.grid {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
     height: 100dvh;
+}
+
+div.panel {
+    padding: var(--pad);
+    background-color: var(--bg-2);
+}
+
+div.renderer {
+    height: 100%;
 }
