@@ -23,7 +23,7 @@ This project is organized around the following constructs:
     * Example: [**`Randomness`**](./src/app/axioms/randomness.ts).
 2. Create a [**pattern array**](./src/app/axioms/patterns/) for the axiom that will define the associated **`SimulationPattern`** objects.
     * Example: [**`RandomnessPatterns`**](./src/app/axioms/patterns/randomness.ts).
-3. Add the axiom to the [**`Axioms`**](./src/app/axioms/) array.
+3. Add the axiom to the [**`Axioms`**](./src/app/axioms/axioms.ts) array.
 
 ## Running
 
