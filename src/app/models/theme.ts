@@ -6,205 +6,243 @@ export class Theme {
 
     isDark = signal<boolean>(this.getColorScheme());
 
-    bg = this.build(
-        'hsla(0, 0%, 0%, 1)',
-        'hsla(0, 0%, 100%, 1)'
-    );
+    hsla(hue: number, saturation: number, brightness: number, alpha: number) {
+        return `hsla(${hue}, ${saturation}%, ${brightness}%, ${alpha})`
+    };
 
-    bg1 = this.build(
-        'hsla(0, 0%, 5%, 1)',
-        'hsla(0, 0%, 98%, 1)'
-    );
+    bg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(0, 0, 0, alpha)
+            : this.hsla(0, 0, 100, alpha);
+    }
 
-    bg2 = this.build(
-        'hsla(0, 0%, 10%, 1)',
-        'hsla(0, 0%, 96%, 1)'
-    );
-
-    divider = this.build(
-        'hsla(212, 8%, 47%, 1)',
-        'hsla(212, 9%, 59%, 1)'
-    );
-
-    translucent = this.build(
-        'hsla(0, 0%, 0%, .8)',
-        'hsla(0, 0%, 100%, .8)'
-    );
-
-    color = this.build(
-        'hsla(210, 29%, 97%, 1)',
-        'hsla(213, 13%, 16%, 1)'
-    );
-
-    color1 = this.build(
-        'hsla(210, 24%, 93%, 1)',
-        'hsla(212, 12%, 22%, 1)'
-    );
-
-    color2 = this.build(
-        'hsla(210, 18%, 84%, 1)',
-        'hsla(212, 11%, 29%, 1)'
-    );
-
-    blue = this.build(
-        'hsla(204, 100%, 75%, 1)',
-        'hsla(212, 92%, 45%, 1)'
-    );
-
-    blue1 = this.build(
-        'hsla(208, 100%, 66%, 1)',
-        'hsla(213, 94%, 35%, 1)'
-    );
-
-    blue2 = this.build(
-        'hsla(211, 100%, 56%, 1)',
-        'hsla(214, 96%, 28%, 1)'
-    );
-
-    blueBg = this.build(
-        'hsla(216, 83%, 23%, 1)',
-        'hsla(203, 100%, 86%, 1)'
-    );
+    bg1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(0, 0, 5, alpha)
+            : this.hsla(0, 0, 98, 1);
+    }
     
-    green = this.build(
-        'hsla(135, 62%, 65%, 1)',
-        'hsla(137, 66%, 30%, 1)'
-    );
+    bg2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(0, 0, 10, alpha)
+            : this.hsla(0, 0, 96, alpha);
+    }
 
-    green1 = this.build(
-        'hsla(137, 50%, 53%, 1)',
-        'hsla(138, 71%, 23%, 1)'
-    );
+    divider(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(212, 8, 47, alpha)
+            : this.hsla(212, 9, 59, alpha);
+    }
 
-    green2 = this.build(
-        'hsla(137, 57%, 41%, 1)',
-        'hsla(141, 90%, 16%, 1)'
-    );
+    color(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(210, 29, 97, alpha)
+            : this.hsla(213, 13, 16, alpha);
+    }
 
-    greenBg = this.build(
-        'hsla(142, 100%, 12%, 1)',
-        'hsla(134, 66%, 80%, 1)'
-    );
+    color1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(210, 24, 93, alpha)
+            : this.hsla(212, 12, 22, alpha);
+    }
+
+    color2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(210, 18, 84, alpha)
+            : this.hsla(212, 11, 29, alpha);
+    }
+
+    blue(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(204, 100, 75, alpha)
+            : this.hsla(212, 92, 45, alpha);
+    }
+
+    blue1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(208, 100, 66, alpha)
+            : this.hsla(213, 94, 35, alpha);
+    }
+
+    blue2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(211, 100, 56, alpha)
+            : this.hsla(214, 96, 28, alpha);
+    }
+
+    blueBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(216, 83, 23, alpha)
+            : this.hsla(203, 100, 86, alpha);
+    }
+
+    green(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(135, 62, 65, alpha)
+            : this.hsla(137, 66, 30, alpha);
+    }
+
+    green1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(137, 50, 53, alpha)
+            : this.hsla(138, 71, 23, alpha);
+    }
+
+    green2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(137, 57, 41, alpha)
+            : this.hsla(141, 90, 16, alpha);
+    }
+
+    greenBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(142, 100, 12, alpha)
+            : this.hsla(134, 66, 80, alpha);
+    }
+
+    yellow(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(46, 79, 61, alpha)
+            : this.hsla(40, 100, 30, alpha);
+    }
     
-    yellow = this.build(
-        'hsla(46, 79%, 61%, 1)',
-        'hsla(40, 100%, 30%, 1)'
-    );
+    yellow1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(44, 66, 50, alpha)
+            : this.hsla(37, 100, 25, alpha);
+    }
 
-    yellow1 = this.build(
-        'hsla(44, 66%, 50%, 1)',
-        'hsla(37, 100%, 25%, 1)'
-    );
+    yellow2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(42, 100, 37, alpha)
+            : this.hsla(36, 98, 20, alpha);
+    }
 
-    yellow2 = this.build(
-        'hsla(42, 100%, 37%, 1)',
-        'hsla(36, 98%, 20%, 1)'
-    );
+    yellowBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(35, 100, 15, alpha)
+            : this.hsla(48, 93, 74, alpha);
+    }
 
-    yellowBg = this.build(
-        'hsla(35, 100%, 15%, 1)',
-        'hsla(48, 93%, 74%, 1)'
-    );
-    
-    orange = this.build(
-        'hsla(27, 100%, 74%, 1)',
-        'hsla(24, 100%, 37%, 1)'
-    );
+    orange(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(27, 100, 74, alpha)
+            : this.hsla(24, 100, 37, alpha);
+    }
 
-    orange1 = this.build(
-        'hsla(25, 96%, 63%, 1)',
-        'hsla(23, 100%, 29%, 1)'
-    );
+    orange1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(25, 96, 63, alpha)
+            : this.hsla(23, 100, 29, alpha);
+    }
 
-    orange2 = this.build(
-        'hsla(24, 76%, 51%, 1)',
-        'hsla(22, 100%, 23%, 1)'
-    );
+    orange2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(24, 76, 51, alpha)
+            : this.hsla(22, 100, 23, alpha);
+    }
 
-    orangeBg = this.build(
-        'hsla(22, 100%, 18%, 1)',
-        'hsla(28, 100%, 85%, 1)'
-    );
-    
-    red = this.build(
-        'hsla(2, 100%, 83%, 1)',
-        'hsla(356, 72%, 47%, 1)'
-    );
+    orangeBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(22, 100, 18, alpha)
+            : this.hsla(28, 100, 85, alpha);
+    }
 
-    red1 = this.build(
-        'hsla(360, 100%, 75%, 1)',
-        'hsla(350, 84%, 35%, 1)'
-    );
+    red(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(2, 100, 83, alpha)
+            : this.hsla(356, 72, 47, alpha);
+    }
 
-    red2 = this.build(
-        'hsla(359, 95%, 63%, 1)',
-        'hsla(349, 90%, 27%, 1)'
-    );
+    red1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(360, 100, 75, alpha)
+            : this.hsla(350, 84, 35, alpha);
+    }
 
-    redBg = this.build(
-        'hsla(346, 100%, 20%, 1)',
-        'hsla(3, 100%, 90%, 1)'
-    );
-    
-    purple = this.build(
-        'hsla(267, 100%, 86%, 1)',
-        'hsla(261, 69%, 59%, 1)'
-    );
+    red2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(359, 95, 63, alpha)
+            : this.hsla(349, 90, 27, alpha);
+    }
 
-    purple1 = this.build(
-        'hsla(265, 100%, 80%, 1)',
-        'hsla(261, 53%, 48%, 1)'
-    );
+    redBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(346, 100, 20, alpha)
+            : this.hsla(3, 100, 90, alpha);
+    }
 
-    purple2 = this.build(
-        'hsla(261, 92%, 72%, 1)',
-        'hsla(261, 56%, 38%, 1)'
-    );
+    purple(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(267, 100, 86, alpha)
+            : this.hsla(261, 69, 59, alpha);
+    }
 
-    purpleBg = this.build(
-        'hsla(261, 59%, 30%, 1)',
-        'hsla(271, 100%, 92%, 1)'
-    );
-    
-    pink = this.build(
-        'hsla(327, 100%, 84%, 1)',
-        'hsla(324, 54%, 49%, 1)'
-    );
+    purple1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(265, 100, 80, alpha)
+            : this.hsla(261, 53, 48, alpha);
+    }
 
-    pink1 = this.build(
-        'hsla(326, 100%, 75%, 1)',
-        'hsla(323, 59%, 38%, 1)'
-    );
+    purple2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(261, 92, 72, alpha)
+            : this.hsla(261, 56, 38, alpha);
+    }
 
-    pink2 = this.build(
-        'hsla(325, 76%, 63%, 1)',
-        'hsla(322, 58%, 30%, 1)'
-    );
+    purpleBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(261, 59, 30, alpha)
+            : this.hsla(271, 100, 92, alpha);
+    }
 
-    pinkBg = this.build(
-        'hsla(320, 67%, 23%, 1)',
-        'hsla(327, 100%, 91%, 1)'
-    );
+    pink(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(327, 100, 84, alpha)
+            : this.hsla(324, 54, 49, alpha);
+    }
 
-    coral = this.build(
-        'hsla(12, 100%, 82%, 1)',
-        'hsla(9, 64%, 47%, 1)'
-    );
+    pink1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(326, 100, 75, alpha)
+            : this.hsla(323, 59, 38, alpha);
+    }
 
-    coral1 = this.build(
-        'hsla(11, 97%, 72%, 1)',
-        'hsla(9, 70%, 36%, 1)'
-    );
+    pink2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(325, 76, 63, alpha)
+            : this.hsla(322, 58, 30, alpha);
+    }
 
-    coral2 = this.build(
-        'hsla(11, 81%, 60%, 1)',
-        'hsla(8, 79%, 28%, 1)'
-    );
+    pinkBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(320, 67, 23, alpha)
+            : this.hsla(327, 100, 91, alpha);
+    }
 
-    coralBg = this.build(
-        'hsla(7, 91%, 22%, 1)',
-        'hsla(12, 100%, 90%, 1)'
-    );
+    coral(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(12, 100, 82, alpha)
+            : this.hsla(9, 64, 47, alpha);
+    }
+
+    coral1(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(11, 97, 72, alpha)
+            : this.hsla(9, 70, 36, alpha);
+    }
+
+    coral2(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(11, 81, 60, alpha)
+            : this.hsla(8, 79, 28, alpha);
+    }
+
+    coralBg(alpha: number = 1) {
+        return this.isDark()
+            ? this.hsla(7, 91, 22, alpha)
+            : this.hsla(12, 100, 90, alpha);
+    }
 
     constructor(refresh: () => void) {
         this.schemeQuery.addEventListener(

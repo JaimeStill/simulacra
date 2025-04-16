@@ -1,5 +1,5 @@
-import { SimulationPattern } from '../models';
-import { RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../simulations';
+import { SimulationPattern } from '../../models';
+import { GaussianDistribution, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
 
 export const RandomnessPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -22,5 +22,12 @@ export const RandomnessPatterns: SimulationPattern[] = [
         2,
         (element: HTMLElement) => new SkewedRandomWalk(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/skewed-random-walk.ts'
+    ),
+    new SimulationPattern(
+        'Gaussian Distribution',
+        'gaussian-distribution',
+        3,
+        (element: HTMLElement) => new GaussianDistribution(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/gaussian-distribution.ts'
     )
 ]
