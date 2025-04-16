@@ -1,7 +1,8 @@
 import { ElementRef, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { Axiom, Axioms, ParamState, SimulationPattern } from '../models';
+import { ParamState, SimulationPattern } from '../models';
+import { Axiom, Axioms } from '../axioms';
 
 @Injectable({
     providedIn: 'root'

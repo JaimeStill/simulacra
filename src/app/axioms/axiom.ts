@@ -1,4 +1,4 @@
-import { AxiomPattern } from '../patterns';
+import { AxiomPattern } from '../models';
 
 export abstract class Axiom {
     constructor(

@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../theme';
+import { Theme } from '../../models';
 
 export class SkewedRandomWalk extends Simulation {
     constructor(element: HTMLElement) {
@@ -36,7 +36,7 @@ class Walker {
         protected t: Theme,
         protected stroke: number = 4
     ) {
-        this.x = width / 5;
+        this.x = this.stroke;
         this.y = height / 2;
     }
 

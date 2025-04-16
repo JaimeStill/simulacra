@@ -1,5 +1,5 @@
 import { Axiom } from './axiom';
-import { AxiomPattern } from '../patterns';
+import { AxiomPattern } from '../models';
 import { RandomnessPatterns } from './simulations';
 
 export class Randomness extends Axiom {

@@ -1,4 +1,4 @@
-import { Simulation } from '../simulations';
+import { Simulation } from '../../simulations';
 import { Pattern } from './pattern';
 
 export class SimulationPattern extends Pattern {

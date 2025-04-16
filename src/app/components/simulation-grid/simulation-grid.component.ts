@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Axiom } from '../../models';
+import { Axiom } from '../../axioms';
 import { AxiomPanelComponent } from '../axiom-panel';
 
 @Component({

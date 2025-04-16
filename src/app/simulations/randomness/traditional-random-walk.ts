@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../theme';
+import { Theme } from '../../models';
 
 export class TraditionalRandomWalk extends Simulation {
     constructor(element: HTMLElement) {

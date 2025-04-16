@@ -1,7 +1,8 @@
 import { Component, inject, input, model } from '@angular/core';
 import { AppService } from '../../services';
-import { Axiom, SimulationPattern } from '../../models';
+import { SimulationPattern } from '../../models';
 import { PatternLinkComponent } from '../pattern-link';
+import { Axiom } from '../../axioms';
 
 @Component({
     selector: 'axiom-panel',

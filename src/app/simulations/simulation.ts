@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { Theme } from '../theme';
+import { Theme } from '../models';
 
 export abstract class Simulation {
     protected resizer: ResizeObserver;
