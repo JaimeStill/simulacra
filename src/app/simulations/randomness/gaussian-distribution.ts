@@ -21,7 +21,7 @@ export class GaussianDistribution extends Simulation {
             );
 
             s.noStroke();
-            s.fill(this.theme.color(.1));
+            s.fill(this.theme.green1(.1));
             s.circle(x, s.height / 2, 16);
         }
     }

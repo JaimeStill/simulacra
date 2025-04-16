@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { GaussianDistribution, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
+import { AcceptRejectDistribution, GaussianDistribution, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
 
 export const RandomnessPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -29,5 +29,12 @@ export const RandomnessPatterns: SimulationPattern[] = [
         3,
         (element: HTMLElement) => new GaussianDistribution(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/gaussian-distribution.ts'
+    ),
+    new SimulationPattern(
+        'Accept Reject Distribution',
+        'accept-reject-distribution',
+        4,
+        (element: HTMLElement) => new AcceptRejectDistribution(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/accept-reject-distribution.ts'
     )
 ]

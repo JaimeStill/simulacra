@@ -41,7 +41,7 @@ class Walker {
     }
 
     show(s: p5) {
-        s.stroke(this.t.color());
+        s.stroke(this.t.green1(.5));
         s.strokeWeight(this.stroke);
         s.point(this.x, this.y);
     }
