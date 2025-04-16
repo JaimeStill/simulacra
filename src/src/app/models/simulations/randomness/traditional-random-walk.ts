@@ -1,12 +1,10 @@
 import p5 from 'p5';
-import { Simulation } from '../simulations';
-import { Theme } from '../theme';
+import { Simulation } from '../simulation';
+import { Theme } from '../../theme';
 
 export class TraditionalRandomWalk extends Simulation {
     constructor(element: HTMLElement) {
-        super(
-            element
-        );
+        super(element);
     }
 
     protected sketch(s: p5): void {
@@ -42,21 +40,6 @@ class Walker {
         this.y = height / 2;
     }
 
-    bound(val: number, factor: number, limit: number, inc: boolean) {
-        const target = inc
-            ? val + factor
-            : val - factor;
-
-        if (inc)
-            return target > limit
-                ? limit
-                : target;
-        else
-            return target < limit
-                ? limit
-                : target;
-    }
-
     show(s: p5) {
         s.stroke(this.t.color());
         s.strokeWeight(this.stroke);
@@ -68,17 +51,20 @@ class Walker {
 
         switch (choice) {
             case 0:
-                this.x = this.bound(this.x, this.stroke, this.width - this.stroke, true);
+                this.x += this.stroke;
                 break;
             case 1:
-                this.x = this.bound(this.x, this.stroke, this.stroke, false);
+                this.x -= this.stroke;
                 break;
             case 2:
-                this.y = this.bound(this.y, this.stroke, this.height - this.stroke, true);
+                this.y += this.stroke;
                 break;
             default:
-                this.y = this.bound(this.y, this.stroke, this.stroke, false);
+                this.y -= this.stroke;
                 break;
         }
+
+        this.x = s.constrain(this.x, this.stroke, this.width - this.stroke);
+        this.y = s.constrain(this.y, this.stroke, this.height - this.stroke);
     }
 }
