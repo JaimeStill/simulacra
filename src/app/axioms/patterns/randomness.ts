@@ -35,6 +35,6 @@ export const RandomnessPatterns: SimulationPattern[] = [
         'accept-reject-distribution',
         4,
         (element: HTMLElement) => new AcceptRejectDistribution(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/accept-reject-distribution.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/accept-reject-distribution.ts'
     )
 ]
