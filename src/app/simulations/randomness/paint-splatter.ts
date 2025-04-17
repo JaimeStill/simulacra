@@ -12,7 +12,7 @@ export class PaintSplatter extends Simulation {
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
-            s.frameRate(8);
+            s.frameRate(10);
             s.background(this.theme.bg());
         }
 
@@ -38,13 +38,12 @@ class Splatter {
     ) {
         const canvasCenterX = canvasWidth / 2;
         const canvasCenterY = canvasHeight / 2;
-        const std = Math.min(canvasWidth, canvasHeight) * 0.15;
-        console.log(std);
+        const std = 120;
 
         this.x = s.randomGaussian(canvasCenterX, std);
         this.y = s.randomGaussian(canvasCenterY, std);
 
-        this.radius = s.random(20, 32);
+        this.radius = s.random(12, 28);
 
         this.sprays = new Sprays(s, t, this.x, this.y, this.radius);
     }
@@ -123,7 +122,7 @@ class Sprays {
 
         for (let i = 0; i < this.count; i++) {
             this.distances.push(
-                s.random(0.8, 1.5) * radius
+                s.random(0.8, 1.5) * s.floor(s.random(radius, radius + 30))
             );
 
             this.thicknesses.push(s.random(1, 3));
