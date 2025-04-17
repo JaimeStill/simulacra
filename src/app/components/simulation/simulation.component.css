@@ -14,7 +14,9 @@ div.overlay {
 div.overlay a h3,
 div.overlay :not(a) h3 {
     display: inline-block;
+    margin: var(--pad);
     padding: var(--pad);
+    background-color: var(--glass);
     backdrop-filter: blur(var(--pad));
     border-radius: var(--rad);
 }

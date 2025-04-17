@@ -1,4 +1,5 @@
 export * from './accept-reject-distribution';
+export * from './animated-noise-map';
 export * from './gaussian-distribution';
 export * from './gaussian-random-walk';
 export * from './multi-walk';
