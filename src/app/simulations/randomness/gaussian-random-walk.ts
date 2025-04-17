@@ -2,7 +2,7 @@ import p5 from 'p5';
 import { Simulation } from '../simulation';
 import { Theme } from '../../models';
 
-export class GuassianRandomWalk extends Simulation {
+export class GaussianRandomWalk extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
