@@ -1,4 +1,4 @@
-import { Component, computed, effect, ElementRef, input, viewChild } from '@angular/core';
+import { Component, computed, effect, ElementRef, input, OnDestroy, viewChild } from '@angular/core';
 import { SimulationPattern } from '../../models';
 
 @Component({
@@ -6,7 +6,7 @@ import { SimulationPattern } from '../../models';
     templateUrl: 'simulation.component.html',
     styleUrl: 'simulation.component.css'
 })
-export class SimulationComponent {
+export class SimulationComponent implements OnDestroy {
     pattern = input.required<SimulationPattern>();
     renderer = viewChild.required<ElementRef<HTMLDivElement>>('renderer');
 
@@ -17,6 +17,10 @@ export class SimulationComponent {
     constructor() {
         effect(() => {
             this.simulation().start();
-        })
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.simulation().destroy();
     }
 }
