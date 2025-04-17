@@ -2,7 +2,7 @@ import p5 from 'p5';
 import { Simulation } from '../simulation';
 import { Theme } from '../../models';
 
-export class NoiseRandomWalk extends Simulation {
+export class NoiseStepWalk extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
@@ -28,10 +28,14 @@ export class NoiseRandomWalk extends Simulation {
 }
 
 class Walker {
+    public x: number;
+    public y: number;
+
+    // boundary
     public bx: number;
     public by: number;
-    public x: number = 0;
-    public y: number = 0;
+
+    // noise offset
     public tx: number = 0;
     public ty: number = 10000;
 
@@ -42,27 +46,21 @@ class Walker {
         protected t: Theme,
         protected stroke: number = 12
     ) {
+        this.x = this.width / 2;
+        this.y = this.height / 2;
         this.bx = this.width - stroke;
         this.by = this.height - stroke;
-        this.step();
     }
 
     show() {
-        this.s.stroke(this.t.green1(.5));
+        this.s.stroke(this.t.green1(.3));
         this.s.strokeWeight(this.stroke);
         this.s.point(this.x, this.y);
     }
 
     step() {        
-        this.x = this.calculate(
-            this.tx,
-            this.width
-        );
-
-        this.y = this.calculate(
-            this.ty,
-            this.height
-        );
+        this.x += this.calculate(this.tx);
+        this.y += this.calculate(this.ty);
 
         this.x = this.s.constrain(
             this.x,
@@ -80,9 +78,11 @@ class Walker {
         this.ty += 0.01;
     }
 
-    calculate(t: number, max: number) {
+    calculate(t: number) {
         return this.s.map(
-            this.s.noise(t), 0, 1, 0, max
+            this.s.noise(t),
+            0, 1,
+            this.stroke * -1, this.stroke
         );
     }
 }

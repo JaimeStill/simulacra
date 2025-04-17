@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { AcceptRejectDistribution, GaussianDistribution, GaussianRandomWalk, NoiseRandomWalk, PaintSplatter, ProbabilityRandomWalk, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
+import { AcceptRejectDistribution, GaussianDistribution, GaussianRandomWalk, NoiseRandomWalk, NoiseStepWalk, PaintSplatter, ProbabilityRandomWalk, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
 
 export const RandomnessPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -64,5 +64,12 @@ export const RandomnessPatterns: SimulationPattern[] = [
         8,
         (element: HTMLElement) => new NoiseRandomWalk(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/noise-random-walk.ts'
+    ),
+    new SimulationPattern(
+        'Noise Step Walker',
+        'noise-step-walker',
+        9,
+        (element: HTMLElement) => new NoiseStepWalk(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/noise-step-walk.ts'
     )
 ]
