@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { AcceptRejectDistribution, GaussianDistribution, GuassianRandomWalk, PaintSplatter, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
+import { AcceptRejectDistribution, GaussianDistribution, GuassianRandomWalk, PaintSplatter, ProbabilityRandomWalk, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
 
 export const RandomnessPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -51,4 +51,11 @@ export const RandomnessPatterns: SimulationPattern[] = [
         (element: HTMLElement) => new AcceptRejectDistribution(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/accept-reject-distribution.ts'
     ),
+    new SimulationPattern(
+        'Probability Random Walker',
+        'probability-random-walker',
+        7,
+        (element: HTMLElement) => new ProbabilityRandomWalk(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/probability-random-walk.ts'
+    )
 ]

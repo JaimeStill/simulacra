@@ -2,7 +2,7 @@ import p5 from 'p5';
 import { Simulation } from '../simulation';
 import { Theme } from '../../models';
 
-export class GuassianRandomWalk extends Simulation {
+export class ProbabilityRandomWalk extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
@@ -46,15 +46,34 @@ class Walker {
         s.point(this.x, this.y);
     }
 
-    step(s: p5) {        
-        this.x += this.calculate(s);
-        this.y += this.calculate(s);
+    step(s: p5) {
+        let xStep = this.calculate(s);
+        let yStep = this.calculate(s);
+        
+        this.x += xStep;
+        this.y += yStep;
 
         this.x = s.constrain(this.x, this.stroke, this.width - this.stroke);
         this.y = s.constrain(this.y, this.stroke, this.height - this.stroke);
     }
 
     calculate(s: p5) {
-        return s.randomGaussian(0, this.stroke * 2);
+        let step = this.acceptReject(s) * this.stroke * 2;
+
+        if (s.random([false, true]))
+            step *= -1;
+
+        return step;
+    }
+
+    acceptReject(s: p5) {
+        while (true) {
+            const r1 = s.random(1);
+            const probability = r1 * r1;
+            const r2 = s.random(1);
+
+            if (r2 < probability)
+                return r1;
+        }
     }
 }
