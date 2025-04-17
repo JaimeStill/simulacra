@@ -1,6 +1,7 @@
 export * from './accept-reject-distribution';
 export * from './gaussian-distribution';
 export * from './gaussian-random-walk';
+export * from './multi-walk';
 export * from './noise-random-walk';
 export * from './noise-step-walk';
 export * from './paint-splatter';
