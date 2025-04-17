@@ -3,11 +3,13 @@ import { Chroma } from './chroma';
 
 export class Limb {
     public pos: p5.Vector;
-    public chroma: Chroma;
 
-    constructor(public s: p5, v: p5.Vector) {
+    constructor(
+        public s: p5,
+        public chroma: Chroma,
+        v: p5.Vector
+    ) {
         this.pos = v.copy();
-        this.chroma = new Chroma(s);
     }
 
     draw() {

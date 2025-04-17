@@ -27,7 +27,7 @@ export class Creature {
             let a = this.s.map(i, 0, count, 0, this.s.TWO_PI);
             let v = p5.Vector.fromAngle(a);
             v.mult(this.radius * 2);
-            this.limbs[i] = new Limb(this.s, v);
+            this.limbs[i] = new Limb(this.s, this.chroma, v);
         }
 
     }

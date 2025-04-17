@@ -12,6 +12,7 @@ export class RandomnessEcosystem extends Simulation {
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
+            s.colorMode(s.HSL);
             s.frameRate(1);
             s.stroke(this.theme.color());
         }
