@@ -3,6 +3,7 @@ export * from './animated-noise-map';
 export * from './gaussian-distribution';
 export * from './gaussian-random-walk';
 export * from './multi-walk';
+export * from './noise-elevation';
 export * from './noise-map';
 export * from './noise-random-walk';
 export * from './noise-step-walk';

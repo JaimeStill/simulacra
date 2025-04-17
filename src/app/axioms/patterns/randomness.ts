@@ -1,5 +1,21 @@
 import { SimulationPattern } from '../../models';
-import { AcceptRejectDistribution, AnimatedNoiseMap, GaussianDistribution, GaussianRandomWalk, MultiWalk, NoiseMap, NoiseRandomWalk, NoiseStepWalk, PaintSplatter, ProbabilityRandomWalk, RandomNumberDistribution, SkewedRandomWalk, TraditionalRandomWalk } from '../../simulations';
+
+import {
+    AcceptRejectDistribution,
+    AnimatedNoiseMap,
+    GaussianDistribution,
+    GaussianRandomWalk,
+    MultiWalk,
+    NoiseElevation,
+    NoiseMap,
+    NoiseRandomWalk,
+    NoiseStepWalk,
+    PaintSplatter,
+    ProbabilityRandomWalk,
+    RandomNumberDistribution,
+    SkewedRandomWalk,
+    TraditionalRandomWalk
+} from '../../simulations';
 
 export const RandomnessPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -92,5 +108,12 @@ export const RandomnessPatterns: SimulationPattern[] = [
         12,
         (element: HTMLElement) => new AnimatedNoiseMap(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/animated-noise-map.ts'
+    ),
+    new SimulationPattern(
+        'Noise Elevation',
+        'noise-elevation',
+        13,
+        (element: HTMLElement) => new NoiseElevation(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/randomness/noise-elevation/index.ts'
     )
 ]
