@@ -8,7 +8,7 @@ export class Ecosystem extends Axiom {
             new AxiomPattern(
                 'Ecosystem',
                 'ecosystem',
-                1,
+                12,
                 EcosystemPatterns,
                 'https://natureofcode.com/introduction/#the-ecosystem-project'
             )
