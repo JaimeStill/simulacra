@@ -11,8 +11,6 @@ export class NoiseElevation extends Simulation {
         const multiplier = 900;
         const power = 0.7;
 
-        console.log('cell base', cellBase);
-        
         return Math.round(
             multiplier * Math.pow(cellBase, power) / cellBase
         );
@@ -22,8 +20,6 @@ export class NoiseElevation extends Simulation {
         let land: Terrain;
         let theta = 0.0;
         let size = this.calculateSize(Math.min(this.width, this.height));
-
-        console.log('cell size', size);
 
         s.setup = () => {
             s.createCanvas(this.width, this.height, s.WEBGL);
