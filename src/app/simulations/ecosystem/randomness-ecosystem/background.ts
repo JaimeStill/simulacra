@@ -21,10 +21,10 @@ export class Background {
         this.s.noStroke();
 
         let xoff = this.start;
-        for (let x = 0; x < this.width - this.pixelSize; x += this.pixelSize) {
+        for (let x = 0; x < this.width; x += this.pixelSize) {
             let yoff = this.start;
 
-            for (let y = 0; y < this.height - this.pixelSize; y += this.pixelSize) {
+            for (let y = 0; y < this.height; y += this.pixelSize) {
                 this.generate(x, y, xoff, yoff);
                 yoff += this.offset;
             }

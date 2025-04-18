@@ -38,10 +38,10 @@ export class AnimatedNoiseMap extends Simulation {
 
         s.draw = () => {
             let xoff = start;
-            for (let x = 0; x < this.width - pixelSize; x += pixelSize) {
+            for (let x = 0; x < this.width; x += pixelSize) {
                 let yoff = start;
 
-                for (let y = 0; y < this.height - pixelSize; y += pixelSize) {
+                for (let y = 0; y < this.height; y += pixelSize) {
                     color(x, y, xoff, yoff);
                     yoff += offset;
                 }
