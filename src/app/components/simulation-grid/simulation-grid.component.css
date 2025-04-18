@@ -2,7 +2,9 @@
     overflow: auto;
 }
 
-div.grid {
+div.container {
+    display: flex;
+    flex-direction: column;
     padding: var(--pad);
     gap: var(--pad);
 }
