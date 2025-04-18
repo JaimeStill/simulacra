@@ -3,6 +3,9 @@ import { Chroma } from './chroma';
 
 export class Limb {
     pos: p5.Vector;
+    growth: p5.Vector;
+    magnitude: number;
+    max: number;
 
     constructor(
         public s: p5,
@@ -10,6 +13,13 @@ export class Limb {
         v: p5.Vector
     ) {
         this.pos = v.copy();
+        this.growth = s.createVector(0.01, 0.01);
+        this.magnitude = this.pos.mag();
+
+        this.max = s.random(
+            this.magnitude + 4,
+            this.magnitude + 8
+        );
     }
 
     draw() {

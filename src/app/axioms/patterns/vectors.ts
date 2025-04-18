@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { BouncingBall, BouncingBallNoVectors, ThreeDBouncingBall, VectorNoiseMap, VectorNoiseWalker, VectorSubtraction } from '../../simulations';
+import { BouncingBall, BouncingBallNoVectors, ThreeDBouncingBall, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorSubtraction } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -43,5 +43,12 @@ export const VectorsPatterns: SimulationPattern[] = [
         5,
         (element: HTMLElement) => new VectorSubtraction(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/vector-subtraction.ts'
+    ),
+    new SimulationPattern(
+        'Vector Multiplication',
+        'vector-multiplication',
+        6,
+        (element: HTMLElement) => new VectorMultiplication(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/vector-multiplication.ts'
     )
 ]
