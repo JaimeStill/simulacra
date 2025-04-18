@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { BouncingBall, BouncingBallNoVectors } from '../../simulations';
+import { BouncingBall, BouncingBallNoVectors, VectorNoiseWalker } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -15,5 +15,12 @@ export const VectorsPatterns: SimulationPattern[] = [
         1,
         (element: HTMLElement) => new BouncingBall(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/bouncing-ball.ts'
+    ),
+    new SimulationPattern(
+        'Vector Noise Walker',
+        'vector-noise-walker',
+        2,
+        (element: HTMLElement) => new VectorNoiseWalker(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/vector-noise-walker.ts'
     )
 ]
