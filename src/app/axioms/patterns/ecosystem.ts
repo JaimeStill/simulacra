@@ -7,6 +7,6 @@ export const EcosystemPatterns: SimulationPattern[] = [
         'eco-randomness',
         0,
         (element: HTMLElement) => new RandomnessEcosystem(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/ecosystem/randomness-ecosysystem/index.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/ecosystem/randomness-ecosystem/index.ts'
     )
 ];
