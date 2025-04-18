@@ -27,8 +27,8 @@ export class ProbabilityRandomWalk extends Simulation {
 }
 
 class Walker {
-    public x: number;
-    public y: number;
+    x: number;
+    y: number;
 
     constructor(
         public width: number,

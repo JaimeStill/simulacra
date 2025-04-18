@@ -1,6 +1,7 @@
 import p5 from 'p5';
 import { Simulation } from '../../simulation';
-import { Creature } from './creature';
+import { Spawner } from './spawner';
+import { Background } from './background';
 
 export class RandomnessEcosystem extends Simulation {
     constructor(element: HTMLElement) {
@@ -8,25 +9,33 @@ export class RandomnessEcosystem extends Simulation {
     }
 
     protected sketch(s: p5): void {
-        const margin: number = 30;
+        const spawner: Spawner = new Spawner(
+            s,
+            this.theme,
+            this.width,
+            this.height
+        );
+
+        const background: Background = new Background(
+            s,
+            this.theme,
+            this.width,
+            this.height
+        );
+
+        s.colorMode(s.HSL);
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
-            s.colorMode(s.HSL);
-            s.frameRate(1);
             s.stroke(this.theme.color());
         }
 
         s.draw = () => {
             s.clear();
+            background.render();
 
-            const creature: Creature = new Creature(
-                s,
-                s.floor(s.random(margin, this.width - margin)),
-                s.floor(s.random(margin, this.height - margin))
-            );
-
-            creature.draw();
+            spawner.spawn();
+            spawner.animate();
         }
     }
 }

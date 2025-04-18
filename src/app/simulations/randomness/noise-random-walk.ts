@@ -28,12 +28,12 @@ export class NoiseRandomWalk extends Simulation {
 }
 
 class Walker {
-    public bx: number;
-    public by: number;
-    public x: number = 0;
-    public y: number = 0;
-    public tx: number = 0;
-    public ty: number = 10000;
+    bx: number;
+    by: number;
+    x: number = 0;
+    y: number = 0;
+    tx: number = 0;
+    ty: number = 10000;
 
     constructor(
         public s: p5,

@@ -28,16 +28,16 @@ export class NoiseStepWalk extends Simulation {
 }
 
 class Walker {
-    public x: number;
-    public y: number;
+    x: number;
+    y: number;
 
     // boundary
-    public bx: number;
-    public by: number;
+    bx: number;
+    by: number;
 
     // noise offset
-    public tx: number = 0;
-    public ty: number = 10000;
+    tx: number = 0;
+    ty: number = 10000;
 
     constructor(
         public s: p5,

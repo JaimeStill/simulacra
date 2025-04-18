@@ -1,11 +1,11 @@
 import p5 from 'p5';
 
 export class Chroma {
-    public color: p5.Color;
-    public hue: number;
-    public saturation: number;
-    public lightness: number;
-    public alpha: number
+    color: p5.Color;
+    hue: number;
+    saturation: number;
+    lightness: number;
+    alpha: number
 
     constructor(public s: p5) {
         this.hue = s.floor(s.random(0, 361));

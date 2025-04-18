@@ -36,11 +36,11 @@ export class MultiWalk extends Simulation {
 }
 
 class Walker {
-    public bx: number;
-    public by: number;
-    public x: number = 0;
-    public y: number = 0;
-    public stroke: number;
+    bx: number;
+    by: number;
+    x: number = 0;
+    y: number = 0;
+    stroke: number;
 
     constructor(
         public s: p5,

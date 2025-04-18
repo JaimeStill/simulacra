@@ -2,7 +2,7 @@ import p5 from 'p5';
 import { Chroma } from './chroma';
 
 export class Limb {
-    public pos: p5.Vector;
+    pos: p5.Vector;
 
     constructor(
         public s: p5,
