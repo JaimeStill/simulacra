@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { BouncingBall, BouncingBallNoVectors, ConstantAcceleration, MotionVelocity, RandomAcceleration, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
+import { AccelerateTowardsMouse, BouncingBall, BouncingBallNoVectors, ConstantAcceleration, MotionVelocity, NoiseAcceleration, RandomAcceleration, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -85,5 +85,19 @@ export const VectorsPatterns: SimulationPattern[] = [
         11,
         (element: HTMLElement) => new RandomAcceleration(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/random-acceleration.ts'
+    ),
+    new SimulationPattern(
+        'Noise Acceleration',
+        'noise-acceleration',
+        12,
+        (element: HTMLElement) => new NoiseAcceleration(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/noise-acceleration.ts'
+    ),
+    new SimulationPattern(
+        'Accelerate Towards Mouse',
+        'accelerate-towards-mouse',
+        13,
+        (element: HTMLElement) => new AccelerateTowardsMouse(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/accelerate-towards-mouse.ts'
     )
 ]
