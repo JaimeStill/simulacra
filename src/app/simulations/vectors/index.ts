@@ -4,6 +4,7 @@ export * from './bouncing-ball';
 export * from './bouncing-ball-no-vectors';
 export * from './constant-acceleration';
 export * from './motion-velocity';
+export * from './random-acceleration';
 export * from './vector-magnitude';
 export * from './vector-multiplication';
 export * from './vector-noise-map';

@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { BouncingBall, BouncingBallNoVectors, ConstantAcceleration, MotionVelocity, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
+import { BouncingBall, BouncingBallNoVectors, ConstantAcceleration, MotionVelocity, RandomAcceleration, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -78,5 +78,12 @@ export const VectorsPatterns: SimulationPattern[] = [
         10,
         (element: HTMLElement) => new ConstantAcceleration(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/constant-acceleration.ts'
+    ),
+    new SimulationPattern(
+        'Random Acceleration',
+        'random-acceleration',
+        11,
+        (element: HTMLElement) => new RandomAcceleration(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/random-acceleration.ts'
     )
 ]
