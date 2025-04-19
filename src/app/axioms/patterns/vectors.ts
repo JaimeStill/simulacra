@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { AccelerateTowardsMouse, BouncingBall, BouncingBallNoVectors, ConstantAcceleration, MotionVelocity, NoiseAcceleration, RandomAcceleration, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
+import { AccelerateTowardsMouse, BouncingBall, BouncingBallNoVectors, ConstantAcceleration, GravitationalAttraction, MotionVelocity, NoiseAcceleration, RandomAcceleration, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -99,5 +99,12 @@ export const VectorsPatterns: SimulationPattern[] = [
         13,
         (element: HTMLElement) => new AccelerateTowardsMouse(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/accelerate-towards-mouse.ts'
+    ),
+    new SimulationPattern(
+        'Gravitational Attraction',
+        'gravitational-attraction',
+        14,
+        (element: HTMLElement) => new GravitationalAttraction(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/gravitational-attraction.ts'
     )
 ]

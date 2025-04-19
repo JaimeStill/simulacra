@@ -4,6 +4,7 @@ export * from './accelerate-towards-mouse';
 export * from './bouncing-ball';
 export * from './bouncing-ball-no-vectors';
 export * from './constant-acceleration';
+export * from './gravitational-attraction';
 export * from './motion-velocity';
 export * from './noise-acceleration';
 export * from './random-acceleration';
