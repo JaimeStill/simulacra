@@ -2,6 +2,7 @@ export * from './three-d-bouncing-ball';
 
 export * from './bouncing-ball';
 export * from './bouncing-ball-no-vectors';
+export * from './constant-acceleration';
 export * from './motion-velocity';
 export * from './vector-magnitude';
 export * from './vector-multiplication';
