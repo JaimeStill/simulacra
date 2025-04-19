@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { BouncingBall, BouncingBallNoVectors, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorSubtraction } from '../../simulations';
+import { BouncingBall, BouncingBallNoVectors, ThreeDBouncingBall, VectorMagnitude, VectorMultiplication, VectorNoiseMap, VectorNoiseWalker, VectorNormalization, VectorSubtraction } from '../../simulations';
 
 export const VectorsPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -57,5 +57,12 @@ export const VectorsPatterns: SimulationPattern[] = [
         7,
         (element: HTMLElement) => new VectorMagnitude(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/vector-magnitude.ts'
+    ),
+    new SimulationPattern(
+        'Vector Normalization',
+        'vector-normalization',
+        8,
+        (element: HTMLElement) => new VectorNormalization(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/vector-normalization.ts'
     )
 ]

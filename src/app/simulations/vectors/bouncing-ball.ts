@@ -43,9 +43,9 @@ export class BouncingBall extends Simulation {
                 ? this.theme.bg()
                 : this.theme.color();
 
-            const fill = s.map(position.x, radius, this.width - radius, 0, 360);
+            const hue = s.map(position.x, radius, this.width - radius, 0, 360);
 
-            s.fill(fill, 100, 50, 0.8);
+            s.fill(hue, 100, 50, 0.8);
 
             s.circle(position.x, position.y, size);
 
