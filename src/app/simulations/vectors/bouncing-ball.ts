@@ -7,29 +7,64 @@ export class BouncingBall extends Simulation {
     }
 
     protected sketch(s: p5): void {
-        const size: number = 32;
+        const size: number = 72;
+        const radius: number = size / 2;
+        const eyeSize = size * 0.15;
+        const eyeOffset = size * 0.2;
+        const smileSize = size * 0.8;
+        const smileOffset = size * 0.01;
 
         let position = s.createVector(100, 100);
         let velocity = s.createVector(3.6, 3);
 
         s.setup = () => {
-            s.createCanvas(this.width, this.height);            
+            s.createCanvas(this.width, this.height);
+            s.colorMode(s.HSL);
         }
 
         s.draw = () => {
             s.background(this.theme.bg());
-            s.stroke(this.theme.green1());
-            s.fill(this.theme.greenBg());
             
             position.add(velocity);
 
-            if (position.x > this.width - size || position.x < size)
+            if (position.x > this.width - radius || position.x < radius)
                 velocity.x *= -1;
 
-            if (position.y > this.height - size || position.y < size)
+            if (position.y > this.height - radius || position.y < radius)
                 velocity.y *= -1;
 
-            s.circle(position.x, position.y, size* 2);
+            drawSmileyFace();
+        }
+
+        const drawSmileyFace = () => {
+            s.noStroke();
+
+            const outline = this.theme.isDark()
+                ? this.theme.bg()
+                : this.theme.color();
+
+            const fill = s.map(position.x, radius, this.width - radius, 0, 360);
+
+            s.fill(fill, 100, 50, 0.8);
+
+            s.circle(position.x, position.y, size);
+
+            s.fill(outline);
+            s.circle(position.x - eyeOffset, position.y - eyeOffset, eyeSize);
+            s.circle(position.x + eyeOffset, position.y - eyeOffset, eyeSize);
+
+            s.noFill();
+            s.strokeWeight(2);
+            s.stroke(outline);
+            s.arc(
+                position.x,
+                position.y + smileOffset,
+                smileSize,
+                smileSize,
+                s.PI * 0.2,
+                s.PI * 0.8,
+                s.OPEN
+            );
         }
     }
 }
