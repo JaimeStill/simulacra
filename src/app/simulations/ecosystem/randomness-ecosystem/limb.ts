@@ -3,9 +3,10 @@ import { Chroma } from './chroma';
 
 export class Limb {
     pos: p5.Vector;
-    growth: p5.Vector;
-    magnitude: number;
+    pulseRate: number;
     max: number;
+    min: number;
+    growing: boolean = true;
 
     constructor(
         public s: p5,
@@ -13,16 +14,36 @@ export class Limb {
         v: p5.Vector
     ) {
         this.pos = v.copy();
-        this.growth = s.createVector(0.01, 0.01);
-        this.magnitude = this.pos.mag();
+        this.pulseRate = 1.01;
+        const mag = this.pos.mag();
 
         this.max = s.random(
-            this.magnitude + 4,
-            this.magnitude + 8
+            mag + 4,
+            mag + 8
+        );
+
+        this.min = s.random(
+            mag - 4,
+            mag - 8
         );
     }
 
+    grow() {
+        const mag = this.pos.mag();
+
+        if (mag >= this.max)
+            this.growing = false;
+        else if (mag <= this.min)
+            this.growing = true;
+        
+        if (this.growing)
+            this.pos.mult(this.pulseRate);
+        else
+            this.pos.div(this.pulseRate);
+    }
+
     draw() {
+        this.grow();
         this.s.line(0, 0, this.pos.x, this.pos.y);
         this.s.fill(this.chroma.color);
         this.s.circle(this.pos.x, this.pos.y, 8);

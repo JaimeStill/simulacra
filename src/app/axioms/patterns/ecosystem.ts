@@ -14,6 +14,6 @@ export const EcosystemPatterns: SimulationPattern[] = [
         'eco-vectors',
         1,
         (element: HTMLElement) => new VectorsEcosystem(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/ecosystems/vectors-ecosystem/index.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/ecosystem/vectors-ecosystem/index.ts'
     )
 ];
