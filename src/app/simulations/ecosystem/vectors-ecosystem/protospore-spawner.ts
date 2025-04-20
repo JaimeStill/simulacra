@@ -6,7 +6,7 @@ import { Theme } from '../../../models';
 export class ProtosporeSpawner implements ISpawner {
     canSpawn: boolean = true;
     ticks: number = 0;    
-    idle: number;
+    idle: number = 0;
 
     constructor(
         public s: p5,
@@ -15,8 +15,22 @@ export class ProtosporeSpawner implements ISpawner {
         public width: number,
         public height: number
     ) {
-        this.idle = s.floor(s.random(220, 800));
+        this.setIdle();
         s.millis()
+    }
+
+    spawn(): Protospore {
+        this.canSpawn = false;
+        this.ticks = 0;
+        this.setIdle();
+
+        return new Protospore(
+            this.s,
+            this.t,
+            this.position.copy(),
+            this.width,
+            this.height
+        );
     }
     
     tick(): void {
@@ -25,16 +39,9 @@ export class ProtosporeSpawner implements ISpawner {
             this.canSpawn = true;
     }
 
-    spawn(): Protospore {
-        this.canSpawn = false;
-        this.ticks = 0;
-
-        return new Protospore(
-            this.s,
-            this.t,
-            this.position.copy(),
-            this.width,
-            this.height
+    private setIdle() {
+        this.idle = this.s.floor(
+            this.s.random(220, 800)
         );
     }
 }

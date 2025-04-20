@@ -18,7 +18,7 @@ export class VectorsEcosystem extends Simulation {
             this.height
         );
 
-        const maxProtospores = 6;
+        const maxProtospores = 18;
         const spawners: ProtosporeSpawner[] = [];
 
         let protospores: Protospore[] = [];
@@ -31,6 +31,7 @@ export class VectorsEcosystem extends Simulation {
         }
 
         s.draw = () => {
+            s.clear();
             background.render();
 
             spawners.forEach(s => {
@@ -55,13 +56,13 @@ export class VectorsEcosystem extends Simulation {
             neurozoids.forEach(n => {
                 n.update();
                 n.render();
-            })
+            });
+
+            neurozoids = neurozoids.filter(n => !n.dead);
         }
 
         const initializeSpawners = (): void => {
-            const spawnerCount: number = s.floor(s.random(3, 7));
-
-            for (let i = 0; i <= spawnerCount; i++)
+            for (let i = 0; i <= 12; i++)
                 spawners[i] = new ProtosporeSpawner(
                     s,
                     this.theme,

@@ -9,11 +9,14 @@ export class Protospore implements ICreature, ISpawner {
     ageRate: number = 0.4;
 
     hue: number;
+    lightness: number;
     lifespan: number;
+    topSpeed: number;
 
-    origin: p5.Vector;
     velocity: p5.Vector;
     acceleration: p5.Vector;
+    interval: p5.Vector;
+    offset: p5.Vector;
 
     constructor(
         public s: p5,
@@ -28,23 +31,32 @@ export class Protospore implements ICreature, ISpawner {
             0, 360
         );
 
-        this.lifespan = s.floor(s.random(48, 64));
-        this.origin = position.copy();
+        this.lifespan = s.floor(s.random(64, 72));
+        this.topSpeed = s.random(0.1, 1);
+
         this.velocity = s.createVector(0, 0);
         this.acceleration = s.createVector(0, 0);
-    }
+        this.interval = s.createVector(0.01, 0.01);
 
-    radius(): number {
-        return this.age / 2;
+        this.offset = s.createVector(
+            s.floor(s.random(0, 100000)),
+            s.floor(s.random(0, 100000))
+        );
+
+        const check = s.floor(s.random(0, 2));
+
+        this.lightness = check === 0
+            ? 96
+            : 16;
     }
 
     render(): void {
         this.s.push();
 
-        this.s.strokeWeight(this.age > 2 ? 2 : this.age);
-        this.s.stroke(this.hue, 100, 60, 1);
-        this.s.fill(this.hue, 100, 60, .4);
-
+        this.s.noStroke();
+        this.s.fill(this.hue, 100, 60, .8);
+        this.s.circle(this.position.x, this.position.y, this.age / 1.5);
+        this.s.fill(this.hue, 100, this.lightness, .2);
         this.s.circle(this.position.x, this.position.y, this.age);
 
         this.s.pop();
@@ -57,8 +69,35 @@ export class Protospore implements ICreature, ISpawner {
             this.hatched = true;
             this.age = 0;
         }
+        
+        this.move();
+        this.checkEdges();
+    }
 
-        // update motion
+    move() {
+        this.acceleration.add(
+            this.setSpeed(
+                this.offset.x,
+                -0.01, 0.02
+            ),
+            this.setSpeed(
+                this.offset.y,
+                -0.09, 0.1
+            )
+        );
+
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(this.topSpeed);
+        this.position.add(this.velocity);
+        this.offset.add(this.interval);
+    }
+
+    setSpeed(offset: number, min: number, max: number) {
+        return this.s.map(
+            this.s.noise(offset),
+            0, 1,
+            min, max
+        )
     }
 
     spawn(): Neurozoid {
@@ -69,5 +108,17 @@ export class Protospore implements ICreature, ISpawner {
             this.width,
             this.height
         );
+    }
+
+    checkEdges() {
+        if (this.position.x > this.width)
+            this.position.x = 0;
+        else if (this.position.x < 0)
+            this.position.x = this.width;
+
+        if (this.position.y > this.height)
+            this.position.y = 0;
+        else if (this.position.y < 0)
+            this.position.y = this.height;
     }
 }
