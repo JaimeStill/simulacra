@@ -4,7 +4,7 @@ import { Protospore } from './protospore';
 import { Theme } from '../../../models';
 
 export class ProtosporeSpawner implements ISpawner {
-    canSpawn: boolean = false;
+    canSpawn: boolean = true;
     ticks: number = 0;    
     idle: number;
 
@@ -15,7 +15,7 @@ export class ProtosporeSpawner implements ISpawner {
         public width: number,
         public height: number
     ) {
-        this.idle = s.floor(s.random(120, 300));
+        this.idle = s.floor(s.random(220, 800));
         s.millis()
     }
     
