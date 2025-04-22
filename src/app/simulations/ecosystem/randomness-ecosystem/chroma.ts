@@ -8,7 +8,7 @@ export class Chroma {
     alpha: number
 
     constructor(public s: p5) {
-        this.hue = s.floor(s.random(0, 361));
+        this.hue = s.floor(s.random(0, 360));
         this.saturation = s.floor(s.random(70, 100));
         this.lightness = s.floor(s.random(30, 70));
         this.alpha = s.random(.5, .8);

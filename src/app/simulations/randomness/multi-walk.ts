@@ -17,7 +17,7 @@ export class MultiWalk extends Simulation {
                 this.height,
                 s.floor(s.random(0, 100000)),
                 s.floor(s.random(0, 100000)),
-                s.floor(s.random(0, 361)),
+                s.floor(s.random(0, 360)),
                 this.theme
             ));
 

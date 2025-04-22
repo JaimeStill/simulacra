@@ -60,7 +60,7 @@ class Splatter {
     }
 
     color() {
-        const h = this.s.floor(this.s.random(0, 361));
+        const h = this.s.floor(this.s.random(0, 360));
         const s = this.s.floor(this.s.random(30, 101));
         const l = this.s.floor(this.s.random(30, 61));
         const a = this.s.random(.6, .9);
