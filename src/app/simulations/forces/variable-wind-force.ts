@@ -10,6 +10,7 @@ export class VariableWindForce extends Simulation {
     protected run(s: p5): void {
         const gravity: p5.Vector = s.createVector(0, 0.1);
         const ball: Ball = new Ball(this.sketch(s));
+        let shockwaves: Shockwave[] = [];
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -23,10 +24,18 @@ export class VariableWindForce extends Simulation {
             ball.applyForce(gravity);
             
             if (s.mouseIsPressed) {
+                const mouse = s.createVector(s.mouseX, s.mouseY);
+
                 const force = ball.position
                     .copy()
-                    .sub(s.createVector(s.mouseX, s.mouseY))
+                    .sub(mouse)
                     .normalize();
+
+                shockwaves.push(new Shockwave(
+                    this.sketch(s),
+                    mouse,
+                    force
+                ));
 
                 ball.applyForce(force);
             }
@@ -34,12 +43,21 @@ export class VariableWindForce extends Simulation {
             ball.update();
             ball.render();
             ball.checkEdges();
+
+            shockwaves.forEach(s => {
+                s.update();
+                s.render();
+            });
+
+            shockwaves = shockwaves.filter(x => !x.dissipated);
         }
     }
 }
 
 class Shockwave {
     size: number = 0;
+    expandRate: number = 3;
+    speed: number = 20;
     dissipated: boolean = false;
 
     constructor(
@@ -47,6 +65,25 @@ class Shockwave {
         public position: p5.Vector,
         public velocity: p5.Vector
     ) {}
+
+    update() {
+        this.size += this.expandRate;
+        this.position.add(this.velocity.copy().mult(this.speed));
+
+        if ((this.position.x < 0 || this.position.x > this.s.width)
+            && (this.position.y < 0 || this.position.y > this.s.height))
+            this.dissipated = true;
+    }
+
+    render() {
+        this.s.p5.push();
+        
+        this.s.p5.noStroke();
+        this.s.p5.fill(240, 100, 80, .8);   
+        this.s.p5.circle(this.position.x, this.position.y, this.size / 2);
+
+        this.s.p5.pop();
+    }
 }
 
 class Ball {
