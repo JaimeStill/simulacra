@@ -1,5 +1,4 @@
-import p5 from 'p5';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export class Background {
     pixelSize: number = 24;
@@ -8,23 +7,20 @@ export class Background {
     speed: number = 0.0;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public width: number,
-        public height: number
+        public s: Sketch
     ) {
-        this.start = s.floor(s.random(0, 1000000));
+        this.start = s.p5.floor(s.p5.random(0, 1000000));
     }
 
     render() {
-        this.s.push();
-        this.s.noStroke();
+        this.s.p5.push();
+        this.s.p5.noStroke();
 
         let xoff = this.start;
-        for (let x = 0; x < this.width; x += this.pixelSize) {
+        for (let x = 0; x < this.s.width; x += this.pixelSize) {
             let yoff = this.start;
 
-            for (let y = 0; y < this.height; y += this.pixelSize) {
+            for (let y = 0; y < this.s.height; y += this.pixelSize) {
                 this.generate(x, y, xoff, yoff);
                 yoff += this.offset;
             }
@@ -32,7 +28,7 @@ export class Background {
         }
         this.speed += this.offset;
         
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     generate(
@@ -42,8 +38,8 @@ export class Background {
         yoff: number
     ) {
         const randomize = (min: number, max: number) =>
-            this.s.map(
-                this.s.noise(xoff, yoff, this.speed),
+            this.s.p5.map(
+                this.s.p5.noise(xoff, yoff, this.speed),
                 0, 1,
                 min, max
             );
@@ -52,8 +48,8 @@ export class Background {
         const sat = 100;
         const lit = randomize(40, 81);
         const alpha = randomize(.1, .4);
-        const color = this.s.color(hue, sat, lit, alpha);
-        this.s.fill(color);
-        this.s.square(x, y, this.pixelSize);
+        const color = this.s.p5.color(hue, sat, lit, alpha);
+        this.s.p5.fill(color);
+        this.s.p5.square(x, y, this.pixelSize);
     }
 }

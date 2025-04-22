@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export type Orientation = 'top' | 'right' | 'bottom' | 'left';
 
@@ -12,49 +12,46 @@ export class Repellent {
     position: p5.Vector;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public orientation: Orientation,
-        public cw: number,
-        public ch: number,
+        public s: Sketch,
+        public orientation: Orientation
     ) {
         this.position = this.calcPosition();
 
         this.falloff = this.isHorizontal()
-            ? ch / 2.8
-            : cw / 2.8;
+            ? s.height / 2.8
+            : s.width / 2.8;
     }
 
     render() {
-        this.s.push();
+        this.s.p5.push();
 
-        this.s.noFill();
+        this.s.p5.noFill();
         const hue = this.isHorizontal() ? 240 : 0;
         const count = this.falloff / this.thickness;
 
         for (let i = 0; i < count; i += this.thickness) {
-            const alpha = this.s.map(i, 0, count, 1, .1);
+            const alpha = this.s.p5.map(i, 0, count, 1, .1);
 
-            this.s.stroke(hue, 100, 60, alpha);
-            this.s.strokeWeight(this.thickness);
+            this.s.p5.stroke(hue, 100, 60, alpha);
+            this.s.p5.strokeWeight(this.thickness);
 
             switch (this.orientation) {
                 case 'top':
-                    this.s.line(0, i, this.cw, i);
+                    this.s.p5.line(0, i, this.s.width, i);
                     break;
                 case 'right':
-                    this.s.line(this.cw - i, 0, this.cw - i, this.ch);
+                    this.s.p5.line(this.s.width - i, 0, this.s.width - i, this.s.height);
                     break;
                 case 'bottom':
-                    this.s.line(0, this.ch - i, this.cw, this.ch - i);
+                    this.s.p5.line(0, this.s.height - i, this.s.width, this.s.height - i);
                     break;
                 case 'left':
-                    this.s.line(i, 0, i, this.ch);
+                    this.s.p5.line(i, 0, i, this.s.height);
                     break;
             }
         }
 
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     repel(object: p5.Vector): p5.Vector {
@@ -63,8 +60,8 @@ export class Repellent {
         const magnitude = this.magnitude(distance);
 
         const force = this.isHorizontal()
-            ? this.s.createVector(0, magnitude)
-            : this.s.createVector(magnitude, 0);
+            ? this.s.p5.createVector(0, magnitude)
+            : this.s.p5.createVector(magnitude, 0);
 
         return force;
     }
@@ -80,13 +77,13 @@ export class Repellent {
     private calcPosition(): p5.Vector {
         switch (this.orientation) {
             case 'top':
-                return this.s.createVector(this.cw / 2, 0);
+                return this.s.p5.createVector(this.s.width / 2, 0);
             case 'right':
-                return this.s.createVector(this.cw, this.ch / 2);
+                return this.s.p5.createVector(this.s.width, this.s.height / 2);
             case 'bottom':
-                return this.s.createVector(this.cw / 2, this.ch);
+                return this.s.p5.createVector(this.s.width / 2, this.s.height);
             default:
-                return this.s.createVector(0, this.ch / 2);
+                return this.s.p5.createVector(0, this.s.height / 2);
         }
     }
 
@@ -100,7 +97,7 @@ export class Repellent {
         if (distance > this.falloff)
             return 0;
 
-        let mag = this.s.map(
+        let mag = this.s.p5.map(
             distance,
             0, this.falloff,
             this.falloff * this.scale, 0

@@ -1,27 +1,21 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch } from '../../models';
 
 export class GravitationalAttraction extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const bodyA = new Mover(
-            s,
-            this.theme,
-            s.createVector(60, 60),
-            this.width,
-            this.height
+            this.sketch(s),
+            s.createVector(60, 60)
         );
 
         const bodyB = new Mover(
-            s,
-            this.theme,
-            s.createVector(this.width - 60, this.height - 60),
-            this.width,
-            this.height
+            this.sketch(s),
+            s.createVector(this.width - 60, this.height - 60)
         );
 
         s.setup = () => {
@@ -51,16 +45,13 @@ class Mover {
     viewMag: number;
 
     constructor(
-        public s: p5,
-        public t: Theme,
+        public s: Sketch,
         public position: p5.Vector,
-        public width: number,
-        public height: number,
         public size: number = 48
     ) {
-        this.velocity = s.createVector(0, 0);
-        this.acceleration = s.createVector(0, 0);
-        this.viewMag = s.mag(this.width, this.height) / 2;
+        this.velocity = s.p5.createVector(0, 0);
+        this.acceleration = s.p5.createVector(0, 0);
+        this.viewMag = s.p5.mag(this.s.width, this.s.height) / 2;
     }
 
     update(body: Mover) {
@@ -69,7 +60,7 @@ class Mover {
 
         bearing.normalize();
 
-        bearing.mult(this.s.map(
+        bearing.mult(this.s.p5.map(
             mag,
             0, this.viewMag,
             0.01, 2
@@ -83,9 +74,9 @@ class Mover {
     }
 
     render() {
-        this.s.noStroke();
+        this.s.p5.noStroke();
 
-        const hue = this.s.map(
+        const hue = this.s.p5.map(
             Math.max(
                 Math.abs(this.velocity.x),
                 Math.abs(this.velocity.y)
@@ -94,9 +85,9 @@ class Mover {
             0, 140
         );
 
-        this.s.fill(hue, 100, 50, .8);
+        this.s.p5.fill(hue, 100, 50, .8);
 
-        this.s.circle(
+        this.s.p5.circle(
             this.position.x,
             this.position.y,
             this.size
@@ -104,14 +95,14 @@ class Mover {
     }
 
     checkEdges() {
-        if (this.position.x > this.width)
+        if (this.position.x > this.s.width)
             this.position.x = 0;
         else if (this.position.x < 0)
-            this.position.x = this.width;
+            this.position.x = this.s.width;
 
-        if (this.position.y > this.height)
+        if (this.position.y > this.s.height)
             this.position.y = 0;
         else if (this.position.y < 0)
-            this.position.y = this.height;
+            this.position.y = this.s.height;
     }
 }

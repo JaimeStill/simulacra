@@ -1,13 +1,13 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch } from '../../models';
 
 export class PaintSplatter extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         let fc = 0;
 
         s.setup = () => {
@@ -18,7 +18,7 @@ export class PaintSplatter extends Simulation {
 
         s.draw = () => {
             fc += 0.1;
-            const splatter = new Splatter(s, this.theme, this.width, this.height);
+            const splatter = new Splatter(this.sketch(s));
             splatter.draw(fc);
         }
     }
@@ -30,56 +30,51 @@ class Splatter {
     radius: number;
     sprays: Sprays;
 
-    constructor(
-        public s: p5,
-        public t: Theme,
-        public canvasWidth: number,
-        public canvasHeight: number
-    ) {
-        const canvasCenterX = canvasWidth / 2;
-        const canvasCenterY = canvasHeight / 2;
+    constructor(public s: Sketch) {
+        const canvasCenterX = s.width / 2;
+        const canvasCenterY = s.height / 2;
         const std = 120;
 
-        this.x = s.randomGaussian(canvasCenterX, std);
-        this.y = s.randomGaussian(canvasCenterY, std);
+        this.x = s.p5.randomGaussian(canvasCenterX, std);
+        this.y = s.p5.randomGaussian(canvasCenterY, std);
 
-        this.radius = s.random(12, 28);
+        this.radius = s.p5.random(12, 28);
 
-        this.sprays = new Sprays(s, t, this.x, this.y, this.radius);
+        this.sprays = new Sprays(s, this.x, this.y, this.radius);
     }
 
     draw(fc: number) {
-        this.s.push();
+        this.s.p5.push();
 
         this.color();
         this.trace(fc);
 
         this.sprays.draw();
 
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     color() {
-        const h = this.s.floor(this.s.random(0, 360));
-        const s = this.s.floor(this.s.random(30, 101));
-        const l = this.s.floor(this.s.random(30, 61));
-        const a = this.s.random(.6, .9);
+        const h = this.s.p5.floor(this.s.p5.random(0, 360));
+        const s = this.s.p5.floor(this.s.p5.random(30, 101));
+        const l = this.s.p5.floor(this.s.p5.random(30, 61));
+        const a = this.s.p5.random(.6, .9);
 
-        this.s.noStroke();
-        this.s.fill(this.t.hsla(h, s, l, a));
+        this.s.p5.noStroke();
+        this.s.p5.fill(this.s.theme.hsla(h, s, l, a));
     }
 
     trace(fc: number) {
-        this.s.beginShape();
+        this.s.p5.beginShape();
 
-        const steps = this.s.floor(this.s.random(32, 46));
+        const steps = this.s.p5.floor(this.s.p5.random(32, 46));
         const points: { x: number, y: number }[] = [];
 
         for (let i = 0; i < steps; i++) {
-            const angle = (i % steps) / steps * this.s.TWO_PI;
+            const angle = (i % steps) / steps * this.s.p5.TWO_PI;
 
-            const radV = this.s.map(
-                this.s.noise(
+            const radV = this.s.p5.map(
+                this.s.p5.noise(
                     Math.cos(angle) * fc,
                     Math.sin(angle) * fc + 10000
                 ),
@@ -95,12 +90,12 @@ class Splatter {
         points.push(points[0]);
         points.push(points[1]);
 
-        this.s.curveVertex(points[points.length - 2].x, points[points.length - 2].y);
+        this.s.p5.curveVertex(points[points.length - 2].x, points[points.length - 2].y);
 
         for (const pt of points)
-            this.s.curveVertex(pt.x, pt.y);
+            this.s.p5.curveVertex(pt.x, pt.y);
 
-        this.s.endShape(this.s.CLOSE);
+        this.s.p5.endShape(this.s.p5.CLOSE);
     }
 }
 
@@ -112,21 +107,20 @@ class Sprays {
     angles: number[] = [];
 
     constructor(
-        public s: p5,
-        public t: Theme,
+        public s: Sketch,
         public x: number,
         public y: number,
         public radius: number
     ) {
-        this.count = s.floor(s.random(20, 80));
+        this.count = s.p5.floor(s.p5.random(20, 80));
 
         for (let i = 0; i < this.count; i++) {
             this.distances.push(
-                s.random(0.8, 1.5) * s.floor(s.random(radius, radius + 30))
+                s.p5.random(0.8, 1.5) * s.p5.floor(s.p5.random(radius, radius + 30))
             );
 
-            this.thicknesses.push(s.random(1, 3));
-            this.angles.push(s.random(0, s.TWO_PI));
+            this.thicknesses.push(s.p5.random(1, 3));
+            this.angles.push(s.p5.random(0, s.p5.TWO_PI));
         }
     }
 
@@ -139,8 +133,8 @@ class Sprays {
             const sprayX = this.x + Math.cos(angle) * distance;
             const sprayY = this.y + Math.sin(angle) * distance;
 
-            this.s.noStroke();
-            this.s.ellipse(sprayX, sprayY, thickness, thickness);
+            this.s.p5.noStroke();
+            this.s.p5.ellipse(sprayX, sprayY, thickness, thickness);
         }
     }
 }

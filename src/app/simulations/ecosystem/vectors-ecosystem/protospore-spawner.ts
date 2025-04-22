@@ -1,7 +1,7 @@
 import p5 from 'p5';
 import { ISpawner } from './interfaces';
 import { Protospore } from './protospore';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export class ProtosporeSpawner implements ISpawner {
     canSpawn: boolean = true;
@@ -9,14 +9,11 @@ export class ProtosporeSpawner implements ISpawner {
     idle: number = 0;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public position: p5.Vector,
-        public width: number,
-        public height: number
+        public s: Sketch,
+        public position: p5.Vector
     ) {
         this.setIdle();
-        s.millis()
+        s.p5.millis()
     }
 
     spawn(): Protospore {
@@ -26,10 +23,7 @@ export class ProtosporeSpawner implements ISpawner {
 
         return new Protospore(
             this.s,
-            this.t,
-            this.position.copy(),
-            this.width,
-            this.height
+            this.position.copy()
         );
     }
     
@@ -40,8 +34,8 @@ export class ProtosporeSpawner implements ISpawner {
     }
 
     private setIdle() {
-        this.idle = this.s.floor(
-            this.s.random(220, 800)
+        this.idle = this.s.p5.floor(
+            this.s.p5.random(220, 800)
         );
     }
 }

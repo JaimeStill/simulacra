@@ -10,14 +10,8 @@ export class VectorsEcosystem extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
-        const background: Background = new Background(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
-
+    protected run(s: p5): void {
+        const background: Background = new Background(this.sketch(s));
         const maxProtospores = 18;
         const spawners: ProtosporeSpawner[] = [];
 
@@ -64,11 +58,8 @@ export class VectorsEcosystem extends Simulation {
         const initializeSpawners = (): void => {
             for (let i = 0; i <= 12; i++)
                 spawners[i] = new ProtosporeSpawner(
-                    s,
-                    this.theme,
-                    generateSpawnerPosition(),
-                    this.width,
-                    this.height
+                    this.sketch(s),
+                    generateSpawnerPosition()
                 );
         }
 

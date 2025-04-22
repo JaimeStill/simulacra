@@ -6,7 +6,7 @@ export class VectorMagnitude extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const viewMag = s.mag(this.width, this.height) / 2;
 
         s.setup = () => {

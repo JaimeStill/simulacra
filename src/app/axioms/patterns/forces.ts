@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { CreatingForces, ForcesOnTwoObjects, HeliumBalloons, RepellingForces } from '../../simulations';
+import { CreatingForces, ForcesOnTwoObjects, HeliumBalloons, RepellingForces, VariableWindForce } from '../../simulations';
 
 export const ForcesPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -29,5 +29,12 @@ export const ForcesPatterns: SimulationPattern[] = [
         3,
         (element: HTMLElement) => new RepellingForces(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/repelling-forces/index.ts'
+    ),
+    new SimulationPattern(
+        'Variable Wind Force',
+        'variable-wind-force',
+        4,
+        (element: HTMLElement) => new VariableWindForce(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/variable-wind-force.ts'
     )
 ]

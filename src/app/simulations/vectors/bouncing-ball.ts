@@ -6,7 +6,7 @@ export class BouncingBall extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const size: number = 72;
         const radius: number = size / 2;
         const eyeSize = size * 0.15;

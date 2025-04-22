@@ -1,19 +1,14 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch } from '../../models';
 
 export class RandomAcceleration extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
-        const mover = new Mover(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
+    protected run(s: p5): void {
+        const mover = new Mover(this.sketch(s));
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -37,22 +32,19 @@ class Mover {
     topSpeed: number = 10;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public width: number,
-        public height: number,
+        public s: Sketch,
         public size: number = 48
     ) {
-        this.position = s.createVector(width / 2, height / 2);
-        this.velocity = s.createVector(0, 0);
-        this.acceleration = s.createVector(-0.001, 0.01);
+        this.position = s.p5.createVector(s.width / 2, s.height / 2);
+        this.velocity = s.p5.createVector(0, 0);
+        this.acceleration = s.p5.createVector(-0.001, 0.01);
     }
 
     update() {
         this.acceleration = p5.Vector.random2D();
 
         this.acceleration.mult(
-            this.s.random(2)
+            this.s.p5.random(2)
         );
 
         this.velocity.add(this.acceleration);
@@ -61,9 +53,9 @@ class Mover {
     }
 
     render() {
-        this.s.noStroke();
+        this.s.p5.noStroke();
 
-        const hue = this.s.map(
+        const hue = this.s.p5.map(
             Math.max(
                 Math.abs(this.velocity.x),
                 Math.abs(this.velocity.y)
@@ -72,9 +64,9 @@ class Mover {
             0, 140
         );
 
-        this.s.fill(hue, 100, 50, .8);
+        this.s.p5.fill(hue, 100, 50, .8);
 
-        this.s.circle(
+        this.s.p5.circle(
             this.position.x,
             this.position.y,
             this.size
@@ -82,14 +74,14 @@ class Mover {
     }
 
     checkEdges() {
-        if (this.position.x > this.width)
+        if (this.position.x > this.s.width)
             this.position.x = 0;
         else if (this.position.x < 0)
-            this.position.x = this.width;
+            this.position.x = this.s.width;
 
-        if (this.position.y > this.height)
+        if (this.position.y > this.s.height)
             this.position.y = 0;
         else if (this.position.y < 0)
-            this.position.y = this.height;
+            this.position.y = this.s.height;
     }
 }

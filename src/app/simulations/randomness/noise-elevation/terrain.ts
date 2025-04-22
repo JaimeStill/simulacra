@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export class Terrain {
     columns: number;
@@ -9,22 +9,19 @@ export class Terrain {
     grid: p5.Color;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public cellSize: number,
-        public width: number,
-        public height: number
+        public s: Sketch,
+        public cellSize: number
     ) {
-        this.grid = this.s.color(140, 100, 16, 1);
+        this.grid = this.s.p5.color(140, 100, 16, 1);
 
-        this.columns = s.floor(this.width / this.cellSize);
-        this.rows = s.floor(this.height / this.cellSize);
+        this.columns = s.p5.floor(this.s.width / this.cellSize);
+        this.rows = s.p5.floor(this.s.height / this.cellSize);
         this.z = this.make2dArray(this.columns, this.rows);
     }
 
     calculate(xoff: number, yoff: number) {
-        return this.s.map(
-            this.s.noise(xoff, yoff, this.zoff),
+        return this.s.p5.map(
+            this.s.p5.noise(xoff, yoff, this.zoff),
             0, 1,
             -160, 160
         );
@@ -52,31 +49,31 @@ export class Terrain {
 
     render() {
         for (let x = 0; x < this.z.length - 1; x++) {
-            this.s.beginShape(this.s.QUAD_STRIP);
+            this.s.p5.beginShape(this.s.p5.QUAD_STRIP);
 
             for (let y = 0; y < this.z[x].length; y++) {
-                this.s.stroke(this.grid);
+                this.s.p5.stroke(this.grid);
 
-                this.s.fill(
+                this.s.p5.fill(
                     this.shade(this.z[x][y])
                 );
 
-                const vx = x * this.cellSize - this.width / 2;
-                const vy = y * this.cellSize - this.height / 2;
+                const vx = x * this.cellSize - this.s.width / 2;
+                const vy = y * this.cellSize - this.s.height / 2;
 
-                this.s.vertex(vx, vy, this.z[x][y]);
-                this.s.vertex(vx + this.cellSize, vy, this.z[x+1][y]);
+                this.s.p5.vertex(vx, vy, this.z[x][y]);
+                this.s.p5.vertex(vx + this.cellSize, vy, this.z[x+1][y]);
             }
 
-            this.s.endShape();
+            this.s.p5.endShape();
         }
     }
 
     shade(elevation: number): p5.Color {
-        return this.s.color(
+        return this.s.p5.color(
             140,
             100,
-            this.s.map(elevation, -160, 160, 10, 90),
+            this.s.p5.map(elevation, -160, 160, 10, 90),
             .8
         );
     }

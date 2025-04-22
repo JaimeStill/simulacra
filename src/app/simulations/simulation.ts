@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { Theme } from '../models';
+import { Sketch, Theme } from '../models';
 
 export abstract class Simulation {
     protected resizer: ResizeObserver;
@@ -11,7 +11,16 @@ export abstract class Simulation {
         this.start.bind(this)
     );
 
-    protected abstract sketch(s: p5): void;
+    protected abstract run(s: p5): void;
+
+    protected sketch(s: p5): Sketch {
+        return new Sketch(
+            s,
+            this.theme,
+            this.width,
+            this.height
+        );
+    }
 
     constructor(
         protected element: HTMLElement
@@ -49,7 +58,7 @@ export abstract class Simulation {
         this.reset();
 
         this.processor = new p5(
-            this.sketch.bind(this),
+            this.run.bind(this),
             this.element
         );
     }

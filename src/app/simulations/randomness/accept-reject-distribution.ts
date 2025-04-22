@@ -19,7 +19,7 @@ export class AcceptRejectDistribution extends Simulation {
         }
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         s.setup = () => {
             s.createCanvas(this.width, this.height);
             s.background(this.theme.bg());

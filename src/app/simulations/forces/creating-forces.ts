@@ -1,22 +1,16 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch, Theme } from '../../models';
 
 export class CreatingForces extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const gravity: p5.Vector = s.createVector(0, 0.1);
         const wind: p5.Vector = s.createVector(0.1, 0);
-
-        const ball: Ball = new Ball(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
+        const ball: Ball = new Ball(this.sketch(s));
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -48,18 +42,15 @@ class Ball {
     acceleration: p5.Vector;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public cw: number,
-        public ch: number
+        public s: Sketch
     ) {
-        this.position = s.createVector(
-            cw / 2,
-            ch / 4
+        this.position = s.p5.createVector(
+            s.width / 2,
+            s.height / 4
         );
 
-        this.velocity = s.createVector(0, 0);
-        this.acceleration = s.createVector(0, 0);
+        this.velocity = s.p5.createVector(0, 0);
+        this.acceleration = s.p5.createVector(0, 0);
     }
 
     applyForce(force: p5.Vector) {
@@ -75,32 +66,32 @@ class Ball {
     }
 
     render() {
-        this.s.push();
+        this.s.p5.push();
 
-        this.s.stroke(this.t.green2());
-        this.s.strokeWeight(2);
-        this.s.fill(this.t.greenBg());
+        this.s.p5.stroke(this.s.theme.green2());
+        this.s.p5.strokeWeight(2);
+        this.s.p5.fill(this.s.theme.greenBg());
 
-        this.s.circle(
+        this.s.p5.circle(
             this.position.x,
             this.position.y,
             this.size
         );
 
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     checkEdges() {
-        if (this.position.x > this.cw - this.size / 2) {
-            this.position.x = this.cw - this.size / 2;
+        if (this.position.x > this.s.width - this.size / 2) {
+            this.position.x = this.s.width - this.size / 2;
             this.velocity.x *= -1;
         } else if (this.position.x < this.size / 2) {
             this.position.x = this.size / 2;
             this.velocity.x *= -1;
         }
         
-        if (this.position.y > this.ch - this.size / 2) {
-            this.position.y = this.ch - this.size / 2;
+        if (this.position.y > this.s.height - this.size / 2) {
+            this.position.y = this.s.height - this.size / 2;
             this.velocity.y *= -1;
         } else if (this.position.y < this.size / 2) {
             this.position.y = this.size / 2;

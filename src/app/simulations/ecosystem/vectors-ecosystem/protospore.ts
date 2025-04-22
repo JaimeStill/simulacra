@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import { ICreature, ISpawner } from './interfaces';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 import { Neurozoid } from './neurozoid';
 
 export class Protospore implements ICreature, ISpawner {
@@ -19,31 +19,28 @@ export class Protospore implements ICreature, ISpawner {
     offset: p5.Vector;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public position: p5.Vector,
-        public width: number,
-        public height: number
+        public s: Sketch,
+        public position: p5.Vector
     ) {
-        this.hue = s.map(
-            s.random(),
+        this.hue = s.p5.map(
+            s.p5.random(),
             0, 1,
             0, 360
         );
 
-        this.lifespan = s.floor(s.random(64, 72));
-        this.topSpeed = s.random(0.1, 1);
+        this.lifespan = s.p5.floor(s.p5.random(64, 72));
+        this.topSpeed = s.p5.random(0.1, 1);
 
-        this.velocity = s.createVector(0, 0);
-        this.acceleration = s.createVector(0, 0);
-        this.interval = s.createVector(0.01, 0.01);
+        this.velocity = s.p5.createVector(0, 0);
+        this.acceleration = s.p5.createVector(0, 0);
+        this.interval = s.p5.createVector(0.01, 0.01);
 
-        this.offset = s.createVector(
-            s.floor(s.random(0, 100000)),
-            s.floor(s.random(0, 100000))
+        this.offset = s.p5.createVector(
+            s.p5.floor(s.p5.random(0, 100000)),
+            s.p5.floor(s.p5.random(0, 100000))
         );
 
-        const check = s.floor(s.random(0, 2));
+        const check = s.p5.floor(s.p5.random(0, 2));
 
         this.lightness = check === 0
             ? 96
@@ -51,15 +48,15 @@ export class Protospore implements ICreature, ISpawner {
     }
 
     render(): void {
-        this.s.push();
+        this.s.p5.push();
 
-        this.s.noStroke();
-        this.s.fill(this.hue, 100, 60, .8);
-        this.s.circle(this.position.x, this.position.y, this.age / 1.5);
-        this.s.fill(this.hue, 100, this.lightness, .2);
-        this.s.circle(this.position.x, this.position.y, this.age);
+        this.s.p5.noStroke();
+        this.s.p5.fill(this.hue, 100, 60, .8);
+        this.s.p5.circle(this.position.x, this.position.y, this.age / 1.5);
+        this.s.p5.fill(this.hue, 100, this.lightness, .2);
+        this.s.p5.circle(this.position.x, this.position.y, this.age);
 
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     update(): void{
@@ -93,8 +90,8 @@ export class Protospore implements ICreature, ISpawner {
     }
 
     setSpeed(offset: number, min: number, max: number) {
-        return this.s.map(
-            this.s.noise(offset),
+        return this.s.p5.map(
+            this.s.p5.noise(offset),
             0, 1,
             min, max
         )
@@ -103,22 +100,19 @@ export class Protospore implements ICreature, ISpawner {
     spawn(): Neurozoid {
         return new Neurozoid(
             this.s,
-            this.t,
-            this.position.copy(),
-            this.width,
-            this.height
+            this.position.copy()
         );
     }
 
     checkEdges() {
-        if (this.position.x > this.width)
+        if (this.position.x > this.s.width)
             this.position.x = 0;
         else if (this.position.x < 0)
-            this.position.x = this.width;
+            this.position.x = this.s.width;
 
-        if (this.position.y > this.height)
+        if (this.position.y > this.s.height)
             this.position.y = 0;
         else if (this.position.y < 0)
-            this.position.y = this.height;
+            this.position.y = this.s.height;
     }
 }

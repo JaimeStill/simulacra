@@ -1,19 +1,14 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch } from '../../models';
 
 export class MotionVelocity extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
-        const mover = new Mover(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
+    protected run(s: p5): void {
+        const mover = new Mover(this.sketch(s));
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -34,20 +29,17 @@ class Mover {
     position: p5.Vector;
     velocity: p5.Vector;
     constructor(
-        public s: p5,
-        public t: Theme,
-        public width: number,
-        public height: number,
+        public s: Sketch,
         public size: number = 48
     ) {
-        this.position = s.createVector(
-            s.random(width),
-            s.random(height)
+        this.position = s.p5.createVector(
+            s.p5.random(s.width),
+            s.p5.random(s.height)
         );
 
-        this.velocity = s.createVector(
-            s.random(-2, 2),
-            s.random(-2, 2)
+        this.velocity = s.p5.createVector(
+            s.p5.random(-2, 2),
+            s.p5.random(-2, 2)
         );
     }
 
@@ -56,21 +48,21 @@ class Mover {
     }
 
     render() {
-        this.s.stroke(this.t.purple2());
-        this.s.fill(this.t.purpleBg());
+        this.s.p5.stroke(this.s.theme.purple2());
+        this.s.p5.fill(this.s.theme.purpleBg());
 
-        this.s.circle(this.position.x, this.position.y, this.size);
+        this.s.p5.circle(this.position.x, this.position.y, this.size);
     }
 
     checkEdges() {
-        if (this.position.x > this.width)
+        if (this.position.x > this.s.width)
             this.position.x = 0;
         else if (this.position.x < 0)
-            this.position.x = this.width;
+            this.position.x = this.s.width;
 
-        if (this.position.y > this.height)
+        if (this.position.y > this.s.height)
             this.position.y = 0;
         else if (this.position.y < 0)
-            this.position.y = this.height;
+            this.position.y = this.s.height;
     }
 }

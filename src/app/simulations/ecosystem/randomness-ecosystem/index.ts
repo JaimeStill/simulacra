@@ -8,13 +8,8 @@ export class RandomnessEcosystem extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
-        const spawner: Spawner = new Spawner(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
+    protected run(s: p5): void {
+        const spawner: Spawner = new Spawner(this.sketch(s));
 
         const background: Background = new Background(
             s,

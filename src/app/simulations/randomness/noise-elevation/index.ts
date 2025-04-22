@@ -16,7 +16,7 @@ export class NoiseElevation extends Simulation {
         );
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         let land: Terrain;
         let theta = 0.0;
         let size = this.calculateSize(Math.min(this.width, this.height));
@@ -25,7 +25,7 @@ export class NoiseElevation extends Simulation {
             s.createCanvas(this.width, this.height, s.WEBGL);
             s.colorMode(s.HSL);
             s.background(this.theme.bg());
-            land = new Terrain(s, this.theme, size, this.width, this.height);
+            land = new Terrain(this.sketch(s), size);
         }
 
         s.draw = () => {

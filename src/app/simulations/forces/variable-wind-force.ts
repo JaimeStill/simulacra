@@ -2,62 +2,70 @@ import p5 from 'p5';
 import { Simulation } from '../simulation';
 import { Sketch } from '../../models';
 
-export class ForcesOnTwoObjects extends Simulation {
+export class VariableWindForce extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
     protected run(s: p5): void {
         const gravity: p5.Vector = s.createVector(0, 0.1);
-        const wind: p5.Vector = s.createVector(0.1, 0);
-        const balls: Ball[] = [];
+        const ball: Ball = new Ball(this.sketch(s));
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
             s.colorMode(s.HSL);
-
-            balls[0] = new Ball(this.sketch(s), 10);
-            balls[1] = new Ball(this.sketch(s), 2);
         }
 
         s.draw = () => {
             s.clear();
-            s.background(this.theme.bg());
+            s.background(this.theme.bg()); 
+            
+            ball.applyForce(gravity);
+            
+            if (s.mouseIsPressed) {
+                const force = ball.position
+                    .copy()
+                    .sub(s.createVector(s.mouseX, s.mouseY))
+                    .normalize();
 
-            balls.forEach(b => {
-                b.applyForce(gravity);
+                ball.applyForce(force);
+            }
 
-                if (s.mouseIsPressed)
-                    b.applyForce(wind);
-
-                b.update();
-                b.render();
-                b.checkEdges();
-            });
+            ball.update();
+            ball.render();
+            ball.checkEdges();
         }
     }
 }
 
+class Shockwave {
+    size: number = 0;
+    dissipated: boolean = false;
+
+    constructor(
+        public s: Sketch,
+        public position: p5.Vector,
+        public velocity: p5.Vector
+    ) {}
+}
+
 class Ball {
+    mass: number = 1;
+    size: number = 48;
+
     position: p5.Vector;
     velocity: p5.Vector;
     acceleration: p5.Vector;
 
-    constructor(
-        public s: Sketch,
-        public mass: number
-    ) {
+    constructor(public s: Sketch) {
         this.position = s.p5.createVector(
-            s.p5.randomGaussian(s.width / 2, 120),
+            s.width / 2,
             s.height / 4
         );
 
         this.velocity = s.p5.createVector(0, 0);
         this.acceleration = s.p5.createVector(0, 0);
     }
-
-    size = (): number => this.mass * 16;
-    radius = (): number => this.size() / 2;
 
     applyForce(force: p5.Vector) {
         const f = force.copy();
@@ -81,26 +89,26 @@ class Ball {
         this.s.p5.circle(
             this.position.x,
             this.position.y,
-            this.size()
+            this.size
         );
 
         this.s.p5.pop();
     }
 
     checkEdges() {
-        if (this.position.x > this.s.width - this.radius()) {
-            this.position.x = this.s.width - this.radius();
+        if (this.position.x > this.s.width - this.size / 2) {
+            this.position.x = this.s.width - this.size / 2;
             this.velocity.x *= -1;
-        } else if (this.position.x < this.radius()) {
-            this.position.x = this.radius();
+        } else if (this.position.x < this.size / 2) {
+            this.position.x = this.size / 2;
             this.velocity.x *= -1;
         }
         
-        if (this.position.y > this.s.height - this.radius()) {
-            this.position.y = this.s.height - this.radius();
+        if (this.position.y > this.s.height - this.size / 2) {
+            this.position.y = this.s.height - this.size / 2;
             this.velocity.y *= -1;
-        } else if (this.position.y < this.radius()) {
-            this.position.y = this.radius();
+        } else if (this.position.y < this.size / 2) {
+            this.position.y = this.size / 2;
             this.velocity.y *= -1;
         }
     }

@@ -1,4 +1,5 @@
 import p5 from 'p5';
+import { Sketch } from '../../../models';
 
 export class Ball {
     radius: number = 10;
@@ -7,13 +8,11 @@ export class Ball {
     velocity: p5.Vector;
 
     constructor(
-        public s: p5,
-        public bounds: number,
-        public width: number,
-        public height: number
+        public s: Sketch,
+        public bounds: number
     ) {
-        this.position = s.createVector(0, 0, 0);
-        this.velocity = s.createVector(2, 4, 3);
+        this.position = s.p5.createVector(0, 0, 0);
+        this.velocity = s.p5.createVector(2, 4, 3);
     }
 
     update() {
@@ -21,11 +20,11 @@ export class Ball {
     }
 
     render() {
-        this.s.push();
-        this.s.translate(this.position.x, this.position.y, this.position.z);
-        this.s.normalMaterial();
-        this.s.sphere(this.radius);
-        this.s.pop();
+        this.s.p5.push();
+        this.s.p5.translate(this.position.x, this.position.y, this.position.z);
+        this.s.p5.normalMaterial();
+        this.s.p5.sphere(this.radius);
+        this.s.p5.pop();
     }
 
     checkEdges() {

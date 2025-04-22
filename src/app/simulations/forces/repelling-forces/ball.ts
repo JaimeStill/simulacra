@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export class Ball {
     hue: number;
@@ -8,31 +8,28 @@ export class Ball {
     acceleration: p5.Vector;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public mass: number,
-        public cw: number,
-        public ch: number
+        public s: Sketch,
+        public mass: number
     ) {
-        this.hue = s.floor(s.random(0, 360));
+        this.hue = s.p5.floor(s.p5.random(0, 360));
 
-        this.position = s.createVector(
-            s.random(this.radius(), cw - this.radius()),
-            s.random(this.radius(), ch - this.radius())
+        this.position = s.p5.createVector(
+            s.p5.random(this.radius(), s.width - this.radius()),
+            s.p5.random(this.radius(), s.height - this.radius())
         );
 
-        this.velocity = s.createVector(
+        this.velocity = s.p5.createVector(
             this.calcVelocity(),
             this.calcVelocity()
         );
 
-        this.acceleration = s.createVector(0, 0);
+        this.acceleration = s.p5.createVector(0, 0);
     }
 
     private calcVelocity = () =>
-        this.s.random() > .5
-            ? this.s.random(1, 3.1)
-            : this.s.random(-3, -0.9);
+        this.s.p5.random() > .5
+            ? this.s.p5.random(1, 3.1)
+            : this.s.p5.random(-3, -0.9);
 
     size = (): number => this.mass * 16;
     radius = (): number => this.size() / 2;
@@ -50,29 +47,29 @@ export class Ball {
     }
 
     render() {
-        this.s.push();
+        this.s.p5.push();
 
-        this.s.noStroke();
-        this.s.fill(this.hue, 100, 70, .8);
+        this.s.p5.noStroke();
+        this.s.p5.fill(this.hue, 100, 70, .8);
 
-        this.s.circle(
+        this.s.p5.circle(
             this.position.x,
             this.position.y,
             this.size()
         );
 
-        this.s.pop();
+        this.s.p5.pop();
     }
 
     checkEdges() {
-        if (this.position.x > this.cw)
+        if (this.position.x > this.s.width)
             this.position.x = 0;
         else if (this.position.x < 0)
-            this.position.x = this.cw;
+            this.position.x = this.s.width;
 
-        if (this.position.y > this.ch)
+        if (this.position.y > this.s.height)
             this.position.y = 0;
         else if (this.position.y < 0)
-            this.position.y = this.ch;
+            this.position.y = this.s.height;
     }
 }

@@ -1,19 +1,14 @@
 import p5 from 'p5';
 import { Simulation } from '../simulation';
-import { Theme } from '../../models';
+import { Sketch } from '../../models';
 
 export class VectorNoiseWalker extends Simulation {
     constructor(element: HTMLElement) {
         super(element);
     }
 
-    protected sketch(s: p5): void {
-        const walker = new Walker(
-            s,
-            this.theme,
-            this.width,
-            this.height
-        );
+    protected run(s: p5): void {
+        const walker = new Walker(this.sketch(s));
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -34,42 +29,39 @@ class Walker {
     increment: p5.Vector;
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public width: number,
-        public height: number,
+        public s: Sketch,
         public stroke: number = 12
     ) {
-        this.pos = s.createVector(0, 0);
-        this.offset = s.createVector(0, 10000);
-        this.increment = s.createVector(0.01, 0.01);
+        this.pos = s.p5.createVector(0, 0);
+        this.offset = s.p5.createVector(0, 10000);
+        this.increment = s.p5.createVector(0.01, 0.01);
 
-        this.bounds = s.createVector(
-            this.width - stroke,
-            this.height - stroke
+        this.bounds = s.p5.createVector(
+            this.s.width - stroke,
+            this.s.height - stroke
         );
     }
 
     show() {
-        this.s.stroke(this.t.green1(.5));
-        this.s.strokeWeight(this.stroke);
-        this.s.point(this.pos.x, this.pos.y);
+        this.s.p5.stroke(this.s.theme.green1(.5));
+        this.s.p5.strokeWeight(this.stroke);
+        this.s.p5.point(this.pos.x, this.pos.y);
     }
 
     step() {
-        this.pos.x = this.s.constrain(
+        this.pos.x = this.s.p5.constrain(
             this.calculate(
                 this.offset.x,
-                this.width
+                this.s.width
             ),
             this.stroke,
             this.bounds.x
         );
 
-        this.pos.y = this.s.constrain(
+        this.pos.y = this.s.p5.constrain(
             this.calculate(
                 this.offset.y,
-                this.height
+                this.s.height
             ),
             this.stroke,
             this.bounds.y
@@ -79,8 +71,8 @@ class Walker {
     }
 
     calculate(t: number, max: number) {
-        return this.s.map(
-            this.s.noise(t),
+        return this.s.p5.map(
+            this.s.p5.noise(t),
             0, 1,
             0, max
         );

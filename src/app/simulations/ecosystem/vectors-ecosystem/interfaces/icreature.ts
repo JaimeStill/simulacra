@@ -1,12 +1,9 @@
 import p5 from 'p5';
-import { Theme } from '../../../../models';
+import { Sketch } from '../../../../models';
 
 export interface ICreature {
-    s: p5;
-    t: Theme;
+    s: Sketch;
     position: p5.Vector;
-    width: number;
-    height: number;
 
     render(): void;
     update(): void;

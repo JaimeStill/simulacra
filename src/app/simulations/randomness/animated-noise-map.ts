@@ -6,7 +6,7 @@ export class AnimatedNoiseMap extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const pixelSize = 24;
         const offset = 0.01;
         const start = s.floor(s.random(0, 100000));

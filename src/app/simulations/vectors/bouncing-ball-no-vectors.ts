@@ -6,7 +6,7 @@ export class BouncingBallNoVectors extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const size: number = 32;
 
         let x: number = 100;

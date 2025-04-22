@@ -1,6 +1,5 @@
-import p5 from 'p5';
 import { Creature } from './creature';
-import { Theme } from '../../../models';
+import { Sketch } from '../../../models';
 
 export class Spawner {
     x: number;
@@ -11,13 +10,10 @@ export class Spawner {
     creatures: Creature[] = [];
 
     constructor(
-        public s: p5,
-        public t: Theme,
-        public width: number,
-        public height: number
+        public s: Sketch
     ) {
-        this.x = this.width / 2;
-        this.y = this.height / 2;
+        this.x = s.width / 2;
+        this.y = s.height / 2;
     }
 
     spawn() {
@@ -27,9 +23,7 @@ export class Spawner {
             this.creatures.push(new Creature(
                 this.s,
                 this.random(this.x),
-                this.random(this.y),
-                this.width,
-                this.height
+                this.random(this.y)
             ));
     }
 
@@ -44,8 +38,8 @@ export class Spawner {
     }
 
     random(basis: number) {
-        return this.s.floor(
-            this.s.randomGaussian(basis, 180)
+        return this.s.p5.floor(
+            this.s.p5.randomGaussian(basis, 180)
         );
     }
 }

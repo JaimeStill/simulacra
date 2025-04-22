@@ -8,7 +8,7 @@ export class RepellingForces extends Simulation {
         super(element);
     }
 
-    protected sketch(s: p5): void {
+    protected run(s: p5): void {
         const repellents: Repellent[] = [];
         const balls: Ball[] = [];
 
@@ -39,19 +39,13 @@ export class RepellingForces extends Simulation {
         }
 
         const createRepellent = (orientation: Orientation) => new Repellent(
-            s,
-            this.theme,
-            orientation,
-            this.width,
-            this.height
+            this.sketch(s),
+            orientation
         );
 
         const createBall = (mass: number) => new Ball(
-            s,
-            this.theme,
-            mass,
-            this.width,
-            this.height
+            this.sketch(s),
+            mass
         );
 
         const initRepellents = () => {
