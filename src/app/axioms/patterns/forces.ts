@@ -28,6 +28,6 @@ export const ForcesPatterns: SimulationPattern[] = [
         'repelling-forces',
         3,
         (element: HTMLElement) => new RepellingForces(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/repelling-forces.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/repelling-forces/index.ts'
     )
 ]
