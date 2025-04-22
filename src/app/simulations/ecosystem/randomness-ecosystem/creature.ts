@@ -90,7 +90,7 @@ export class Creature {
         return this.s.map(
             this.s.noise(t),
             0, 1,
-            -0.1, 0.1
+            -0.6, 0.6
         );
     }
 }

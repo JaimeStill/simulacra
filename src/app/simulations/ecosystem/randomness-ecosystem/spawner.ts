@@ -5,7 +5,7 @@ import { Theme } from '../../../models';
 export class Spawner {
     x: number;
     y: number;
-    max: number = 45;
+    max: number = 30;
     margin: number = 30;
 
     creatures: Creature[] = [];
@@ -26,8 +26,8 @@ export class Spawner {
         for (let i = 0; i < gen; i++)
             this.creatures.push(new Creature(
                 this.s,
-                this.random(this.width),
-                this.random(this.height),
+                this.random(this.x),
+                this.random(this.y),
                 this.width,
                 this.height
             ));
@@ -45,7 +45,7 @@ export class Spawner {
 
     random(basis: number) {
         return this.s.floor(
-            this.s.randomGaussian(basis / 2, 180)
+            this.s.randomGaussian(basis, 180)
         );
     }
 }

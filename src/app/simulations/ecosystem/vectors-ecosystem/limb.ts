@@ -1,5 +1,4 @@
 import p5 from 'p5';
-import { Chroma } from './chroma';
 
 export class Limb {
     pos: p5.Vector;
@@ -10,7 +9,6 @@ export class Limb {
 
     constructor(
         public s: p5,
-        public chroma: Chroma,
         v: p5.Vector
     ) {
         this.pos = v.copy();
@@ -28,7 +26,24 @@ export class Limb {
         );
     }
 
-    grow() {
+    render(hue: number, origin: p5.Vector) {
+        this.grow();
+
+        this.s.push();
+
+        this.s.translate(origin);
+        this.s.strokeWeight(2);
+        this.s.stroke(hue, 100, 30, 1);
+        this.s.line(0, 0, this.pos.x, this.pos.y);
+
+        this.s.noStroke();
+        this.s.fill(hue, 100, 50, .8);
+        this.s.circle(this.pos.x, this.pos.y, 8);
+
+        this.s.pop();
+    }
+
+    private grow() {
         const mag = this.pos.mag();
 
         if (mag >= this.max)
@@ -40,12 +55,5 @@ export class Limb {
             this.pos.mult(this.pulseRate);
         else
             this.pos.div(this.pulseRate);
-    }
-
-    draw() {
-        this.grow();
-        this.s.line(0, 0, this.pos.x, this.pos.y);
-        this.s.fill(this.chroma.color);
-        this.s.circle(this.pos.x, this.pos.y, 8);
     }
 }
