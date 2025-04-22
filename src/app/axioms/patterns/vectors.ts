@@ -35,7 +35,8 @@ export const VectorsPatterns: SimulationPattern[] = [
         '3d-bouncing-ball',
         4,
         (element: HTMLElement) => new ThreeDBouncingBall(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/three-d-bouncing-ball/index.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/three-d-bouncing-ball/index.ts',
+        'Drag to rotate'
     ),
     new SimulationPattern(
         'Vector Subtraction',
@@ -98,7 +99,8 @@ export const VectorsPatterns: SimulationPattern[] = [
         'accelerate-towards-mouse',
         13,
         (element: HTMLElement) => new AccelerateTowardsMouse(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/accelerate-towards-mouse.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/vectors/accelerate-towards-mouse.ts',
+        'Circle accelerates towards the cursor position'
     ),
     new SimulationPattern(
         'Gravitational Attraction',

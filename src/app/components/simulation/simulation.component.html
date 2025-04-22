@@ -5,8 +5,14 @@
                 <a [href]="pattern.reference" target="_blank">
                     <h3>{{ pattern.name }}</h3>
                 </a>
+                @if (pattern.instructions) {
+                    <p>{{ pattern.instructions }}</p>
+                }
             } @else {
                 <h3>{{ pattern.name }}</h3>
+                @if (pattern.instructions) {
+                    <p>{{ pattern.instructions }}</p>
+                }
             }
         </div>
     }

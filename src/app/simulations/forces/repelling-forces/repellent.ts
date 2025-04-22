@@ -7,7 +7,7 @@ export class Repellent {
     falloff: number;
 
     thickness: number = 2;
-    scale: number = .0005;
+    scale: number = .0008;
 
     position: p5.Vector;
 
@@ -18,8 +18,8 @@ export class Repellent {
         this.position = this.calcPosition();
 
         this.falloff = this.isHorizontal()
-            ? s.height / 2.8
-            : s.width / 2.8;
+            ? s.height / 3
+            : s.width / 3;
     }
 
     render() {

@@ -62,7 +62,7 @@ class Ball {
     applyForce(force: p5.Vector) {
         const f = force.copy();
         f.div(this.mass);
-        this.acceleration.add(force);
+        this.acceleration.add(f);
     }
 
     update() {

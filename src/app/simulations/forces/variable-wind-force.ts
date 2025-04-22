@@ -10,7 +10,7 @@ export class VariableWindForce extends Simulation {
     protected run(s: p5): void {
         const gravity: p5.Vector = s.createVector(0, 0.1);
         const ball: Ball = new Ball(this.sketch(s));
-        let shockwaves: Shockwave[] = [];
+        let gusts: Gust[] = [];
 
         s.setup = () => {
             s.createCanvas(this.width, this.height);
@@ -31,7 +31,7 @@ export class VariableWindForce extends Simulation {
                     .sub(mouse)
                     .normalize();
 
-                shockwaves.push(new Shockwave(
+                gusts.push(new Gust(
                     this.sketch(s),
                     mouse,
                     force
@@ -44,17 +44,17 @@ export class VariableWindForce extends Simulation {
             ball.render();
             ball.checkEdges();
 
-            shockwaves.forEach(s => {
-                s.update();
-                s.render();
+            gusts.forEach(g => {
+                g.update();
+                g.render();
             });
 
-            shockwaves = shockwaves.filter(x => !x.dissipated);
+            gusts = gusts.filter(g => !g.dissipated);
         }
     }
 }
 
-class Shockwave {
+class Gust {
     size: number = 0;
     expandRate: number = 3;
     speed: number = 20;
@@ -107,7 +107,7 @@ class Ball {
     applyForce(force: p5.Vector) {
         const f = force.copy();
         f.div(this.mass);
-        this.acceleration.add(force);
+        this.acceleration.add(f);
     }
 
     update() {

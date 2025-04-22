@@ -14,14 +14,16 @@ export const ForcesPatterns: SimulationPattern[] = [
         'creating-forces',
         1,
         (element: HTMLElement) => new CreatingForces(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/creating-forces.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/creating-forces.ts',
+        'Click / Tap to generate wind force'
     ),
     new SimulationPattern(
         'Forces Acting on Two Objects',
         'forces-on-two-objects',
         2,
         (element: HTMLElement) => new ForcesOnTwoObjects(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/forces-on-two-objects.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/forces-on-two-objects.ts',
+        'Click / Tap to generate wind force'
     ),
     new SimulationPattern(
         'Repelling Forces',
@@ -35,6 +37,7 @@ export const ForcesPatterns: SimulationPattern[] = [
         'variable-wind-force',
         4,
         (element: HTMLElement) => new VariableWindForce(element),
-        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/variable-wind-force.ts'
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/variable-wind-force.ts',
+        'Click / Tap to generate wind force'
     )
 ]

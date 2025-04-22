@@ -7,7 +7,8 @@ export class SimulationPattern extends Pattern {
         url: string,
         index: number,
         public build: (element: HTMLElement) => Simulation,
-        reference?: string
+        reference?: string,
+        public instructions?: string
     ) {
         super(name, url, index, reference);
     }

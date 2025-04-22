@@ -5,18 +5,16 @@ div.renderer {
 
 div.overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 8px;
+    left: 8px;
+    width: auto;
+    max-width: 75ch;
     background: transparent;
-}
-
-div.overlay a h3,
-div.overlay :not(a) h3 {
-    display: inline-block;
-    margin: var(--pad);
+    display: flex;
+    flex-direction: column;
     padding: var(--pad);
-    background-color: var(--glass);
-    backdrop-filter: blur(var(--pad));
+    gap: var(--rad);
     border-radius: var(--rad);
+    background-color: var(--glass);
+    backdrop-filter: blue(var(--pad));
 }
