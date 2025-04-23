@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { CreatingForces, ForcesOnTwoObjects, Friction, FrictionWithTwoObjects, GravityScaledMass, HeliumBalloons, MagneticMouse, RepellingForces, VariableWindForce } from '../../simulations';
+import { CreatingForces, FluidResistance, ForcesOnTwoObjects, Friction, FrictionWithTwoObjects, GravityScaledMass, HeliumBalloons, MagneticMouse, RepellingForces, VariableWindForce } from '../../simulations';
 
 export const ForcesPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -71,5 +71,12 @@ export const ForcesPatterns: SimulationPattern[] = [
         (element: HTMLElement) => new MagneticMouse(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/magnetic-mouse.ts',
         'Click / Tap to attract the ball to the mouse'
+    ),
+    new SimulationPattern(
+        'Fluid Resistance',
+        'fluid-resistance',
+        9,
+        (element: HTMLElement) => new FluidResistance(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/fluid-resistance/index.ts'
     )
 ]

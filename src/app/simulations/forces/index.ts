@@ -1,4 +1,5 @@
 export * from './creating-forces';
+export * from './fluid-resistance';
 export * from './forces-on-two-objects';
 export * from './friction';
 export * from './friction-with-two-objects';
