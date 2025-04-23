@@ -18,7 +18,7 @@ export class Ball {
         this.radius = mass * 8;
         this.position = s.p5.createVector(
             s.p5.random(this.radius, s.width - this.radius),
-            s.height / 4
+            s.p5.random(this.radius, s.height / 4 - this.radius)
         );
 
         this.velocity = s.p5.createVector(0, 0);

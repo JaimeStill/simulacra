@@ -27,7 +27,10 @@ export class Liquid {
             .velocity
             .copy()
             .mult(-1)
-            .setMag(dragMagnitude);
+            .setMag(dragMagnitude)
+            .limit(5);
+
+        console.log({ drag: dragForce.y, speed });
 
         return dragForce;
     }
