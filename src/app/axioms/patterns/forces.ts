@@ -1,5 +1,5 @@
 import { SimulationPattern } from '../../models';
-import { CreatingForces, ForcesOnTwoObjects, HeliumBalloons, RepellingForces, VariableWindForce } from '../../simulations';
+import { CreatingForces, ForcesOnTwoObjects, Friction, FrictionWithTwoObjects, GravityScaledMass, HeliumBalloons, MagneticMouse, RepellingForces, VariableWindForce } from '../../simulations';
 
 export const ForcesPatterns: SimulationPattern[] = [
     new SimulationPattern(
@@ -39,5 +39,37 @@ export const ForcesPatterns: SimulationPattern[] = [
         (element: HTMLElement) => new VariableWindForce(element),
         'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/variable-wind-force.ts',
         'Click / Tap to generate wind force'
+    ),
+    new SimulationPattern(
+        'Gravity Scaled by Mass',
+        'gravity-scaled-mass',
+        5,
+        (element: HTMLElement) => new GravityScaledMass(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/gravity-scaled-mass.ts',
+        'Click / Tap to generate wind force'
+    ),
+    new SimulationPattern(
+        'Friction',
+        'friction',
+        6,
+        (element: HTMLElement) => new Friction(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/friction.ts',
+        'Click / Tap to generate wind force'
+    ),
+    new SimulationPattern(
+        'Friction With Two Objects',
+        'friction-with-two-objects',
+        7,
+        (element: HTMLElement) => new FrictionWithTwoObjects(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/friction-with-two-objects.ts',
+        'Click / Tap to generate wind force'
+    ),
+    new SimulationPattern(
+        'Magnetic Mouse',
+        'magnetic-mouse',
+        8,
+        (element: HTMLElement) => new MagneticMouse(element),
+        'https://github.com/JaimeStill/simulacra/blob/main/src/app/simulations/forces/magnetic-mouse.ts',
+        'Click / Tap to attract the ball to the mouse'
     )
 ]
